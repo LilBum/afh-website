@@ -1,4 +1,4 @@
-// A&D Homecare & Aging with Grace AFH — shared behavior
+﻿// A&D Home Care & Aging with Grace AFH — shared behavior
 
 // Mobile nav toggle
 const navToggle = document.querySelector('.nav-toggle');

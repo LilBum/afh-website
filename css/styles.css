@@ -1,5 +1,5 @@
 /* ============================================================
-   A&D Homecare & Aging with Grace AFH — shared styles
+   A&D Home Care & Aging with Grace AFH — shared styles
    ============================================================ */
 
 :root {
@@ -670,6 +670,44 @@ footer {
   font-size: 0.9rem;
 }
 
+/* ---------- music toggle ---------- */
+.music-toggle {
+  position: fixed;
+  right: 1.2rem;
+  bottom: 1.2rem;
+  z-index: 60;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid var(--teal);
+  background: var(--white);
+  color: var(--teal-deep);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.music-toggle:hover { transform: translateY(-2px); }
+.music-toggle:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.music-toggle.playing {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: var(--white);
+}
+.music-toggle.playing::after {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  border-radius: 50%;
+  border: 2px solid rgba(14, 124, 107, 0.45);
+  animation: musicPulse 2.4s ease-out infinite;
+}
+@keyframes musicPulse {
+  0% { transform: scale(0.85); opacity: 0.9; }
+  100% { transform: scale(1.3); opacity: 0; }
+}
+
 /* ---------- reveal animation ---------- */
 .reveal {
   opacity: 0;
@@ -682,6 +720,7 @@ footer {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .btn, .home-card, .gallery-grid figure img { transition: none; }
+  .music-toggle.playing::after { animation: none; }
 }
 
 /* ---------- responsive ---------- */
