@@ -1,35 +1,65 @@
 # A&D Home Care & Aging with Grace AFH — Website
 
-Static marketing site for two adult family homes under the same owners:
+Marketing site for two adult family homes under the same owners:
 **A&D Home Care** (Lynnwood, WA) and **Aging with Grace AFH** (Everett, WA).
-No build step — plain HTML/CSS/JS. Hosted on Vercel.
+Built with **Vite + React + TypeScript + Tailwind CSS 4** (same stack as the portfolio).
+Hosted on Vercel.
 
-## Pages
+## Pages (client-side routes)
 
-| Page | Status |
+| Route | Status |
 |---|---|
-| `index.html` | Landing — hero, why-an-AFH, values, services overview, both-homes cards, contact |
-| `lynnwood.html` | **A&D Home Care — fully built** — photo tour (6 photos + lightbox), quick facts, full service lists, visit info, tour CTA |
-| `everett.html` | Aging with Grace AFH — stub: services + "photos coming soon" placeholder hero |
+| `/` | Landing — hero, why-an-AFH, values, services overview, both-homes cards, contact |
+| `/lynnwood` | **A&D Home Care — fully built** — photo tour (6 photos + lightbox), quick facts, full service lists, visit info, tour CTA |
+| `/everett` | Aging with Grace AFH — services + "photos coming soon" placeholder hero |
 
-## Structure
+Routing is a React Router SPA; Vercel serves `index.html` for all routes (see `vercel.json`).
 
-- `css/styles.css` — single shared stylesheet (design tokens at top in `:root`)
-- `js/main.js` — mobile nav, gallery lightbox, scroll-reveal, footer year
-- `js/music.js` — calming background music (generative Web Audio ambient pad) + floating
-  toggle button. To use a recorded track instead, set `MUSIC_FILE` at the top of the file
-  to e.g. `'assets/audio/ambient.mp3'` and drop the file in.
-- `assets/img/` — web-optimized JPGs (resized, ~170–480 KB each)
-- `assets/favicon.svg` — house+heart logo mark (also used as nav/footer logo)
-- `images/` — original photos & reference screenshots (NOT used by the site; excluded from deploy)
+## Stack & structure
 
-## Run locally
+- **Vite 8** + **React 19** + **TypeScript** + **Tailwind CSS 4** (`@tailwindcss/vite`)
+- **framer-motion** — scroll-reveal animations (respects `prefers-reduced-motion`)
+- **lucide-react** — icon set (replaced the old hand-written inline SVGs)
+- Self-hosted fonts via `@fontsource-variable/fraunces` + `@fontsource-variable/nunito`
 
 ```
-python -m http.server 8742
+src/
+  main.tsx              entry — fonts, MotionConfig, mounts <App>
+  App.tsx               React Router routes + shared layout + scroll manager
+  index.css             Tailwind import + design tokens (@theme) + base styles
+  data/site.ts          all content: contact info, nav, services, values, gallery
+  lib/
+    cn.ts               className joiner
+    ambientMusic.ts     Web-Audio generative ambient pad engine
+  components/
+    Seo.tsx             per-route <title>/<meta>/JSON-LD (React 19 hoisting)
+    layout/             TopBar, Navbar, Footer, MusicToggle
+    ui/                 Button, Container, Section, Kicker, SectionHead,
+                        Card, IconBadge, ContactCard, Reveal
+    sections/           Gallery (+ lightbox), ServiceColumns, CtaBand
+  pages/                Home, Lynnwood, Everett
+public/
+  favicon.svg           house+heart logo mark
+  assets/img/           web-optimized JPGs (resized, ~170–480 KB each)
+images/                 original photos & reference screenshots (NOT deployed)
 ```
 
-then open http://localhost:8742 (or use the configured `afh-site` launch config).
+The design tokens (cream / teal / coral palette, fonts, radii, shadows) live in the
+`@theme` block of `src/index.css` and are used as Tailwind utilities (`bg-teal`,
+`text-ink-soft`, `rounded-card`, `shadow-card`, …).
+
+Background music: `src/lib/ambientMusic.ts` synthesizes a calming pad with the Web Audio
+API (nothing copyrighted, no audio file). The floating toggle is `components/layout/MusicToggle.tsx`.
+
+## Commands
+
+```
+npm install
+npm run dev       # Vite dev server (http://localhost:5173)
+npm run build     # tsc + vite build → dist/
+npm run preview   # preview the production build
+npm run lint      # eslint
+```
 
 ## Contact info on the site
 
@@ -49,9 +79,9 @@ then open http://localhost:8742 (or use the configured `afh-site` launch config)
 
 ## TODO
 
-- [ ] **Everett photos** — replace the placeholder hero card on `everett.html` and the
-      placeholder tile on the index "Our Homes" card with real photos (drop them in
-      `assets/img/` and mirror the `lynnwood.html` markup).
+- [ ] **Everett photos** — replace the placeholder hero on `/everett` and the placeholder tile
+      on the home "Our Homes" card with real photos (drop them in `public/assets/img/` and add
+      them to `lynnwoodGallery`-style data, or mirror the Lynnwood `<Gallery>` section).
 - [ ] **Everett address & phone** — published when the owners want them public.
 - [ ] **Confirm photo assignment** — all 6 photos are presented as the Lynnwood home;
       if any are actually Everett, move them to the Everett page.
@@ -62,5 +92,6 @@ then open http://localhost:8742 (or use the configured `afh-site` launch config)
 
 ## Deploy
 
-Vercel static deploy (no build). `images/` (originals + reference screenshots), `README.md`,
-and `.claude/` are excluded from deployment via `.vercelignore`.
+Vercel auto-detects the Vite project and runs `npm run build` → `dist/`. `vercel.json` adds the
+SPA rewrite (all routes → `index.html`). `images/` (originals + reference screenshots),
+`README.md`, and `.claude/` are excluded via `.vercelignore`.
