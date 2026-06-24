@@ -1,4 +1,7 @@
 .claude/
 .vercel/
+node_modules/
+dist/
+*.local
 Thumbs.db
 desktop.ini
