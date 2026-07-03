@@ -35,10 +35,12 @@ export default function Navbar() {
           <Link to="/" className="mr-auto flex items-center gap-[0.65rem] no-underline" onClick={() => setOpen(false)}>
             <img src="/assets/favicon.svg" alt="" width={42} height={42} className="rounded-[10px]" />
             <span>
-              <b className="block font-head text-[1.25rem] leading-[1.1] text-ink">A&amp;D Home Care</b>
-              <small className="block font-body text-[0.72rem] font-extrabold uppercase tracking-[0.1em] text-teal">
+              <b className="block whitespace-nowrap font-head text-[1rem] leading-[1.2] text-ink sm:text-[1.12rem]">
+                A&amp;D Home Care
+              </b>
+              <b className="block whitespace-nowrap font-head text-[1rem] leading-[1.2] text-teal-deep sm:text-[1.12rem]">
                 &amp; Aging with Grace AFH
-              </small>
+              </b>
             </span>
           </Link>
 

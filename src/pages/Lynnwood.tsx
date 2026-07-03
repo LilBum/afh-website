@@ -17,8 +17,8 @@ const jsonLd = {
   '@type': 'LocalBusiness',
   name: 'A&D Home Care',
   description: 'Family-style adult family home providing 24-hour senior care in Lynnwood, Washington.',
-  telephone: '+1-425-673-0745',
-  email: 'gabi_badet@yahoo.com',
+  telephone: site.phoneTel,
+  email: site.email,
   address: {
     '@type': 'PostalAddress',
     streetAddress: '3111 201st Pl SW',
@@ -35,7 +35,7 @@ export default function Lynnwood() {
     <>
       <Seo
         title="A&D Home Care — Adult Family Home in Lynnwood, WA | Photo Tour"
-        description="Tour A&D Home Care at 3111 201st Pl SW, Lynnwood, WA: a bright, spacious adult family home with a vaulted-ceiling living room, open kitchen, sunny back deck, and 24-hour professional care. Call (425) 673-0745."
+        description={`Tour A&D Home Care at 3111 201st Pl SW, Lynnwood, WA: a bright, spacious adult family home with a vaulted-ceiling living room, open kitchen, sunny back deck, and 24-hour professional care. Call ${site.phone}.`}
       >
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </Seo>
@@ -126,10 +126,6 @@ export default function Lynnwood() {
             <Reveal className="h-full">
               <ContactCard icon={Phone} title="Phone & email">
                 Phone: <a href={`tel:${site.phoneTel}`}>{site.phone}</a>
-                <br />
-                Cell: <a href={`tel:${site.cellTel}`}>{site.cell}</a>
-                <br />
-                Fax: {site.fax}
                 <br />
                 <a href={`mailto:${site.email}`}>{site.email}</a>
               </ContactCard>

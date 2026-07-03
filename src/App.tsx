@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { BrowserRouter, Outlet, Route, Routes, useLocation } from 'react-router-dom'
+import { BrowserRouter, Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom'
 import TopBar from './components/layout/TopBar'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
@@ -10,7 +10,8 @@ import Everett from './pages/Everett'
 
 /** Scrolls to the hash target on navigation, or to the top on a plain route change. */
 function ScrollManager() {
-  const { pathname, hash } = useLocation()
+  // `key` changes on every navigation, so clicking the same hash link twice still re-scrolls.
+  const { hash, key } = useLocation()
   useEffect(() => {
     if (hash) {
       requestAnimationFrame(() => {
@@ -19,7 +20,7 @@ function ScrollManager() {
       return
     }
     window.scrollTo(0, 0)
-  }, [pathname, hash])
+  }, [hash, key])
   return null
 }
 
@@ -46,7 +47,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/lynnwood" element={<Lynnwood />} />
           <Route path="/everett" element={<Everett />} />
-          <Route path="*" element={<Home />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>
     </BrowserRouter>

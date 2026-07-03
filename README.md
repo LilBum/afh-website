@@ -64,7 +64,8 @@ npm run lint      # eslint
 ## Contact info on the site
 
 - **A&D Home Care (Lynnwood):** 3111 201st Pl SW, Lynnwood, WA 98036
-  — Phone (425) 673-0745 · Cell (425) 773-0844 · Fax (425) 673-0745
+  — Phone (425) 773-0844 (owner's cell; the old landline/fax (425) 673-0745 was retired
+  from the site on 2026-07-02 at the owner's request)
 - **Aging with Grace AFH (Everett):** address intentionally private for now
   ("shared when you arrange a visit")
 - **Email:** gabi_badet@yahoo.com

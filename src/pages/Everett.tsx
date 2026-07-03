@@ -76,8 +76,6 @@ export default function Everett() {
               <ContactCard icon={Phone} title="Contact">
                 Phone: <a href={`tel:${site.phoneTel}`}>{site.phone}</a>
                 <br />
-                Cell: <a href={`tel:${site.cellTel}`}>{site.cell}</a>
-                <br />
                 <a href={`mailto:${site.email}`}>{site.email}</a>
               </ContactCard>
             </Reveal>
