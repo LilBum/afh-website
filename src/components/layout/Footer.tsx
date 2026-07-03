@@ -12,7 +12,7 @@ export default function Footer() {
           <div>
             <div className="mb-[0.9rem] flex items-center gap-[0.6rem]">
               <img src="/assets/favicon.svg" alt="" width={38} height={38} className="rounded-[9px]" />
-              <b className="font-head text-[1.2rem] text-white">A&amp;D Home Care &amp; Aging with Grace</b>
+              <b className="font-head text-[1.2rem] text-white">A&amp;D Home Care &amp; Aging with Grace AFH</b>
             </div>
             <p className="text-[0.98rem]">
               Two family-style adult family homes caring for seniors in Lynnwood and Everett, Washington — with

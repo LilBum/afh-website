@@ -15,12 +15,8 @@ import {
 
 export const site = {
   name: 'A&D Home Care',
-  fullName: 'A&D Home Care & Aging with Grace AFH',
-  phone: '(425) 673-0745',
-  phoneTel: '+14256730745',
-  cell: '(425) 773-0844',
-  cellTel: '+14257730844',
-  fax: '(425) 673-0745',
+  phone: '(425) 773-0844',
+  phoneTel: '+14257730844',
   email: 'gabi_badet@yahoo.com',
   lynnwood: {
     street: '3111 201st Pl SW',

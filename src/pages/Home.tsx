@@ -17,7 +17,7 @@ export default function Home() {
     <>
       <Seo
         title="A&D Home Care & Aging with Grace AFH — Adult Family Homes in Lynnwood & Everett, WA"
-        description="Two warm, family-style adult family homes for seniors: A&D Home Care in Lynnwood and Aging with Grace AFH in Everett, Washington. 24-hour care, RN on call, private rooms, home-cooked meals. Call (425) 673-0745 to schedule a tour."
+        description={`Two warm, family-style adult family homes for seniors: A&D Home Care in Lynnwood and Aging with Grace AFH in Everett, Washington. 24-hour care, RN on call, private rooms, home-cooked meals. Call ${site.phone} to schedule a tour.`}
       />
 
       {/* ---------- Hero ---------- */}
@@ -259,9 +259,7 @@ export default function Home() {
               <ContactCard icon={Phone} title="Call us">
                 Phone: <a href={`tel:${site.phoneTel}`}>{site.phone}</a>
                 <br />
-                Cell: <a href={`tel:${site.cellTel}`}>{site.cell}</a>
-                <br />
-                Fax: {site.fax}
+                Call or text any time — we're happy to answer questions.
               </ContactCard>
             </Reveal>
             <Reveal className="h-full">
