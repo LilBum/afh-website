@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import { cn } from '../../lib/cn'
 
-/** Small uppercase eyebrow pill — mirrors `.kicker`. */
+/** Small uppercase eyebrow pill, mirrors `.kicker`. */
 export default function Kicker({ children, className }: { children: ReactNode; className?: string }) {
   return (
     <span

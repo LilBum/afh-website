@@ -9,7 +9,7 @@ import App from './App'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    {/* Respect the visitor's reduced-motion preference — appropriate for this audience. */}
+    {/* Respect the visitor's reduced-motion preference, appropriate for this audience. */}
     <MotionConfig reducedMotion="user">
       <App />
     </MotionConfig>

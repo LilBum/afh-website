@@ -3,7 +3,6 @@ import { BrowserRouter, Navigate, Outlet, Route, Routes, useLocation } from 'rea
 import TopBar from './components/layout/TopBar'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
-import MusicToggle from './components/layout/MusicToggle'
 import Home from './pages/Home'
 import Lynnwood from './pages/Lynnwood'
 import Everett from './pages/Everett'
@@ -34,7 +33,6 @@ function Layout() {
         <Outlet />
       </main>
       <Footer />
-      <MusicToggle />
     </div>
   )
 }

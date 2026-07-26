@@ -5,6 +5,7 @@ import { NavLink, Link } from 'react-router-dom'
 import { site } from '../../data/site'
 import Container from '../ui/Container'
 import Button from '../ui/Button'
+import MusicToggle from './MusicToggle'
 import { cn } from '../../lib/cn'
 
 const links = [
@@ -31,7 +32,7 @@ export default function Navbar() {
   return (
     <div className="sticky top-0 z-50 border-b border-line bg-cream/90 backdrop-blur-md">
       <Container>
-        <nav className="flex items-center gap-6 py-[0.8rem]" aria-label="Main navigation">
+        <nav className="flex items-center gap-3 py-[0.8rem] md:gap-6" aria-label="Main navigation">
           <Link to="/" className="mr-auto flex items-center gap-[0.65rem] no-underline" onClick={() => setOpen(false)}>
             <img src="/assets/favicon.svg" alt="" width={42} height={42} className="rounded-[10px]" />
             <span>
@@ -64,6 +65,8 @@ export default function Navbar() {
               {site.phone}
             </Button>
           </div>
+
+          <MusicToggle />
 
           <button
             type="button"

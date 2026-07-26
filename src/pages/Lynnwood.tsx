@@ -10,7 +10,7 @@ import ContactCard from '../components/ui/ContactCard'
 import Gallery from '../components/sections/Gallery'
 import ServiceColumns from '../components/sections/ServiceColumns'
 import CtaBand from '../components/sections/CtaBand'
-import { lynnwoodChips, site } from '../data/site'
+import { lynnwoodChips, lynnwoodGallery, site } from '../data/site'
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -34,7 +34,7 @@ export default function Lynnwood() {
   return (
     <>
       <Seo
-        title="A&D Home Care — Adult Family Home in Lynnwood, WA | Photo Tour"
+        title="A&D Home Care: Adult Family Home in Lynnwood, WA | Photo Tour"
         description={`Tour A&D Home Care at 3111 201st Pl SW, Lynnwood, WA: a bright, spacious adult family home with a vaulted-ceiling living room, open kitchen, sunny back deck, and 24-hour professional care. Call ${site.phone}.`}
       >
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
@@ -45,10 +45,10 @@ export default function Lynnwood() {
         <Container>
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.05fr_0.9fr] lg:gap-16">
             <div>
-              <Kicker>A&amp;D Home Care — our Lynnwood home</Kicker>
+              <Kicker>A&amp;D Home Care, our Lynnwood home</Kicker>
               <h1 className="mb-[1.2rem]">Bright, spacious, and built for comfort</h1>
               <p className="mb-8 max-w-[34rem] text-[1.25rem] text-ink-soft">
-                Vaulted ceilings, an open kitchen, a big family living room, and a sunny back deck — A&amp;D Home Care
+                Vaulted ceilings, an open kitchen, a big family living room, and a sunny back deck: A&amp;D Home Care
                 gives residents room to live, not just a room to stay in.
               </p>
               <div className="flex flex-wrap gap-[0.9rem]">
@@ -69,10 +69,10 @@ export default function Lynnwood() {
                 className="absolute -top-3.5 -right-3.5 bottom-3.5 left-3.5 -rotate-[2.5deg] rounded-card bg-teal-tint"
               />
               <img
-                src="/assets/img/back-deck.jpg"
-                alt="The sunny back deck of A&D Home Care with a cushioned outdoor couch, two chairs, and a fenced backyard"
-                width={1440}
-                height={1080}
+                src="/assets/img/living-room.jpg"
+                alt="The living room of A&D Home Care, with vaulted ceilings, a chandelier, a fireplace, and comfortable couches"
+                width={1179}
+                height={1584}
                 className="relative max-h-[540px] w-full rounded-card object-cover shadow-float"
               />
               <div className="absolute -bottom-[1.1rem] -left-[1.1rem] z-[2] flex items-center gap-[0.6rem] rounded-pill bg-white px-[1.2rem] py-[0.65rem] text-[0.95rem] font-extrabold shadow-card">
@@ -103,10 +103,10 @@ export default function Lynnwood() {
         </Container>
       </section>
 
-      <Gallery />
+      <Gallery photos={lynnwoodGallery} />
 
       <ServiceColumns title="Everything included at A&D Home Care">
-        One familiar team of caregivers — and every service below, day and night.
+        One familiar team of caregivers, and every service below, day and night.
       </ServiceColumns>
 
       {/* ---------- Visit ---------- */}

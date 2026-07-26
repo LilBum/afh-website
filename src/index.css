@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* ============================================================
-   A&D Home Care & Aging with Grace AFH — design tokens
+   A&D Home Care & Aging with Grace AFH, design tokens
    Ported from the original css/styles.css :root variables into
    the Tailwind 4 theme so they're available as utilities
    (bg-teal, text-ink-soft, rounded-card, shadow-card, …).

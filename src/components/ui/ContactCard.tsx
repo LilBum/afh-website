@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 import Card from './Card'
 import IconBadge from './IconBadge'
 
-/** Icon + heading + free-form content — used in the contact / visit sections. */
+/** Icon + heading + free-form content, used in the contact / visit sections. */
 export default function ContactCard({
   icon,
   title,

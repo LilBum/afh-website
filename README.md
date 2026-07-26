@@ -1,4 +1,4 @@
-# A&D Home Care & Aging with Grace AFH — Website
+# A&D Home Care & Aging with Grace AFH Website
 
 Marketing site for two adult family homes under the same owners:
 **A&D Home Care** (Lynnwood, WA) and **Aging with Grace AFH** (Everett, WA).
@@ -9,22 +9,22 @@ Hosted on Vercel.
 
 | Route | Status |
 |---|---|
-| `/` | Landing — hero, why-an-AFH, values, services overview, both-homes cards, contact |
-| `/lynnwood` | **A&D Home Care — fully built** — photo tour (6 photos + lightbox), quick facts, full service lists, visit info, tour CTA |
-| `/everett` | Aging with Grace AFH — services + "photos coming soon" placeholder hero |
+| `/` | Landing: hero, why-an-AFH, values, services overview, both-homes cards, contact |
+| `/lynnwood` | **A&D Home Care, fully built**: photo tour (5 photos + lightbox), quick facts, full service lists, visit info, tour CTA |
+| `/everett` | **Aging with Grace AFH, fully built**: photo tour (8 photos + lightbox), quick facts, full service lists, visit info, tour CTA |
 
 Routing is a React Router SPA; Vercel serves `index.html` for all routes (see `vercel.json`).
 
 ## Stack & structure
 
 - **Vite 8** + **React 19** + **TypeScript** + **Tailwind CSS 4** (`@tailwindcss/vite`)
-- **framer-motion** — scroll-reveal animations (respects `prefers-reduced-motion`)
-- **lucide-react** — icon set (replaced the old hand-written inline SVGs)
+- **framer-motion**: scroll-reveal animations (respects `prefers-reduced-motion`)
+- **lucide-react**: icon set (replaced the old hand-written inline SVGs)
 - Self-hosted fonts via `@fontsource-variable/fraunces` + `@fontsource-variable/nunito`
 
 ```
 src/
-  main.tsx              entry — fonts, MotionConfig, mounts <App>
+  main.tsx              entry: fonts, MotionConfig, mounts <App>
   App.tsx               React Router routes + shared layout + scroll manager
   index.css             Tailwind import + design tokens (@theme) + base styles
   data/site.ts          all content: contact info, nav, services, values, gallery
@@ -40,7 +40,7 @@ src/
   pages/                Home, Lynnwood, Everett
 public/
   favicon.svg           house+heart logo mark
-  assets/img/           web-optimized JPGs (resized, ~170–480 KB each)
+  assets/img/           web-optimized JPGs (long edge ≤1600 px, EXIF stripped, ~170–550 KB each)
 images/                 original photos & reference screenshots (NOT deployed)
 ```
 
@@ -64,7 +64,7 @@ npm run lint      # eslint
 ## Contact info on the site
 
 - **A&D Home Care (Lynnwood):** 3111 201st Pl SW, Lynnwood, WA 98036
-  — Phone (425) 773-0844 (owner's cell; the old landline/fax (425) 673-0745 was retired
+  Phone (425) 773-0844 (owner's cell; the old landline/fax (425) 673-0745 was retired
   from the site on 2026-07-02 at the owner's request)
 - **Aging with Grace AFH (Everett):** address intentionally private for now
   ("shared when you arrange a visit")
@@ -75,21 +75,25 @@ npm run lint      # eslint
 - The screenshots in `images/` are from a *reference* AFH site (iCare) and were used only as a
   template for which sections/services to include. All brand-specific text from that site has
   been removed.
-- Service lists are the standard WA adult-family-home service menu from those references —
-  trim anything these two homes don't actually offer.
+- Service lists are the standard WA adult-family-home service menu from those references.
+  Trim anything these two homes don't actually offer.
+- **Strip EXIF from every photo before publishing it.** Phone photos carry GPS coordinates, and
+  the Everett address is deliberately not published, so shipping the original file would leak it.
+  Re-saving through Pillow without passing `exif=` drops all metadata (see the `everett-*.jpg`
+  set, all of which are clean).
 
 ## TODO
 
-- [ ] **Everett photos** — replace the placeholder hero on `/everett` and the placeholder tile
-      on the home "Our Homes" card with real photos (drop them in `public/assets/img/` and add
-      them to `lynnwoodGallery`-style data, or mirror the Lynnwood `<Gallery>` section).
-- [ ] **Everett address & phone** — published when the owners want them public.
-- [ ] **Confirm photo assignment** — all 6 photos are presented as the Lynnwood home;
-      if any are actually Everett, move them to the Everett page.
-- [ ] **Verify service lists** — confirm both homes offer everything listed (esp. specialized
+- [x] **Everett photos**: `/everett` now has a real hero + 8-photo `<Gallery>`, and the home
+      "Our Homes" card shows a real photo. Assets in `public/assets/img/everett-*.jpg`,
+      data in `everettGallery` (`src/data/site.ts`). Replaced with the owner's own higher-res
+      set on 2026-07-26, which added a private room, two bathroom/roll-in-shower shots, and
+      the front garden.
+- [ ] **Everett address & phone**: published when the owners want them public.
+- [ ] **Verify service lists**: confirm both homes offer everything listed (esp. specialized
       services like tube feeding, Foley catheter, hospice).
-- [ ] **Custom domain + canonical/OG tags** — once a domain is pointed at the Vercel project.
-- [ ] **License numbers** — WA AFH license numbers are often shown in the footer; add if wanted.
+- [ ] **Custom domain + canonical/OG tags**: once a domain is pointed at the Vercel project.
+- [ ] **License numbers**: WA AFH license numbers are often shown in the footer; add if wanted.
 
 ## Deploy
 
