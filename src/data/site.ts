@@ -13,21 +13,7 @@ import {
   Sun,
 } from 'lucide-react'
 
-export const site = {
-  name: 'A&D Home Care',
-  phone: '(425) 773-0844',
-  phoneTel: '+14257730844',
-  email: 'gabi_badet@yahoo.com',
-  lynnwood: {
-    street: '3111 201st Pl SW',
-    cityState: 'Lynnwood, WA 98036',
-    oneLine: '3111 201st Pl SW, Lynnwood, WA 98036',
-    mapsUrl: 'https://maps.google.com/?q=3111+201st+Pl+SW,+Lynnwood,+WA+98036',
-  },
-  everett: {
-    cityState: 'Everett, Washington',
-  },
-} as const
+export { site, areasServed } from './contact'
 
 export type NavLink = { label: string; href: string }
 

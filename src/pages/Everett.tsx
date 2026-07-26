@@ -12,31 +12,10 @@ import ServiceColumns from '../components/sections/ServiceColumns'
 import CtaBand from '../components/sections/CtaBand'
 import { everettChips, everettGallery, site } from '../data/site'
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
-  name: 'Aging with Grace AFH',
-  description: 'Family-style adult family home providing 24-hour senior care in Everett, Washington.',
-  telephone: site.phoneTel,
-  email: site.email,
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Everett',
-    addressRegion: 'WA',
-    addressCountry: 'US',
-  },
-  areaServed: ['Everett WA', 'Mukilteo WA', 'Snohomish County WA'],
-}
-
 export default function Everett() {
   return (
     <>
-      <Seo
-        title="Aging with Grace AFH: Adult Family Home in Everett, WA | Photo Tour"
-        description={`Tour Aging with Grace AFH in Everett, WA: a warm, family-style adult family home with landscaped gardens, a sunny back deck, family-style dining, and 24-hour professional care. Call ${site.phone}.`}
-      >
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      </Seo>
+      <Seo route="/everett" />
 
       {/* ---------- Hero ---------- */}
       <header className="overflow-hidden pt-[3rem] pb-[3.5rem] sm:pt-[4.5rem] sm:pb-[5rem]">
@@ -44,7 +23,7 @@ export default function Everett() {
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.05fr_0.9fr] lg:gap-16">
             <div>
               <Kicker>Aging with Grace AFH, our Everett home</Kicker>
-              <h1 className="mb-[1.2rem]">Warm, unhurried, and full of life</h1>
+              <h1 className="mb-[1.2rem]">An adult family home in Everett, warm and full of life</h1>
               <p className="mb-8 max-w-[34rem] text-[1.25rem] text-ink-soft">
                 Aging with Grace lives up to its name: family-style care in a quiet Everett neighborhood, with
                 landscaped gardens, a sunny back deck, and a table that's always set for a shared meal or a birthday.
@@ -116,6 +95,8 @@ export default function Everett() {
             <Reveal className="h-full">
               <ContactCard icon={MapPin} title="Location">
                 Everett, Washington. The exact address is shared when you arrange a visit.
+                <br />
+                Families come to us from Everett, Mukilteo, Lynnwood, and across Snohomish County.
               </ContactCard>
             </Reveal>
             <Reveal className="h-full">

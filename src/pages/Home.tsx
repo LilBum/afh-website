@@ -15,10 +15,7 @@ import { servicesOverview, site, trustStrip, values } from '../data/site'
 export default function Home() {
   return (
     <>
-      <Seo
-        title="A&D Home Care & Aging with Grace AFH: Adult Family Homes in Lynnwood & Everett, WA"
-        description={`Two warm, family-style adult family homes for seniors: A&D Home Care in Lynnwood and Aging with Grace AFH in Everett, Washington. 24-hour care, RN on call, private rooms, home-cooked meals. Call ${site.phone} to schedule a tour.`}
-      />
+      <Seo route="/" />
 
       {/* ---------- Hero ---------- */}
       <header className="overflow-hidden pt-[3rem] pb-[3.5rem] sm:pt-[4.5rem] sm:pb-[5rem]">
@@ -26,7 +23,7 @@ export default function Home() {
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.05fr_0.9fr] lg:gap-16">
             <div>
               <Kicker>Adult family homes in Lynnwood &amp; Everett, WA</Kicker>
-              <h1 className="mb-[1.2rem]">Care that feels like family.</h1>
+              <h1 className="mb-[1.2rem]">Adult family homes where care feels like family</h1>
               <p className="mb-8 max-w-[34rem] text-[1.25rem] text-ink-soft">
                 Two warm, family-style homes with 24-hour professional care and room to truly live:{' '}
                 <strong>A&amp;D Home Care</strong> in Lynnwood and <strong>Aging with Grace AFH</strong> in Everett.

@@ -5,3 +5,5 @@ dist/
 *.local
 Thumbs.db
 desktop.ini
+
+.vercel

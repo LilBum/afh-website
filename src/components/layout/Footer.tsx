@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
-import { site } from '../../data/site'
+import { areasServed, site } from '../../data/site'
 import Container from '../ui/Container'
 
 const year = new Date().getFullYear()
+const nearbyCities = areasServed.filter((city) => city !== 'Snohomish County')
 
 export default function Footer() {
   return (
@@ -17,6 +18,9 @@ export default function Footer() {
             <p className="text-[0.98rem]">
               Two family-style adult family homes caring for seniors in Lynnwood and Everett, Washington, with
               compassion, respect, and 24-hour professional care.
+            </p>
+            <p className="mt-[0.8rem] text-[0.92rem]">
+              Serving {nearbyCities.join(', ')} and the rest of Snohomish County.
             </p>
           </div>
 
