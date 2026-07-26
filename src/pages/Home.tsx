@@ -183,8 +183,8 @@ export default function Home() {
               <article className="flex h-full flex-col overflow-hidden rounded-card border border-line bg-white shadow-soft transition-[transform,box-shadow] duration-200 hover:-translate-y-1 hover:shadow-card">
                 <div className="relative aspect-[16/9]">
                   <img
-                    src="/assets/img/kitchen.jpg"
-                    alt="The open kitchen of our Lynnwood home, with dark wood cabinets and stone countertops"
+                    src="/assets/img/lynnwood-exterior.jpg"
+                    alt="The Lynnwood home behind cherry trees in blossom, with a fountain in the front lawn and a ramp to the front door"
                     loading="lazy"
                     className="h-full w-full object-cover"
                   />

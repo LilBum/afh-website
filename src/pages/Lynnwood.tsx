@@ -46,10 +46,10 @@ export default function Lynnwood() {
                 className="absolute -top-3.5 -right-3.5 bottom-3.5 left-3.5 -rotate-[2.5deg] rounded-card bg-teal-tint"
               />
               <img
-                src="/assets/img/living-room.jpg"
-                alt="The living room of A&D Home Care, with vaulted ceilings, a chandelier, a fireplace, and comfortable couches"
-                width={1179}
-                height={1584}
+                src="/assets/img/lynnwood-exterior.jpg"
+                alt="The Lynnwood home behind cherry trees in full white blossom, with a stone fountain in the front lawn, a Welcome sign, and a wheelchair ramp to the front door"
+                width={1578}
+                height={1600}
                 className="relative max-h-[540px] w-full rounded-card object-cover shadow-float"
               />
               <div className="absolute -bottom-[1.1rem] -left-[1.1rem] z-[2] flex items-center gap-[0.6rem] rounded-pill bg-white px-[1.2rem] py-[0.65rem] text-[0.95rem] font-extrabold shadow-card">

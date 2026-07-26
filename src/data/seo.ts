@@ -88,9 +88,9 @@ const lynnwoodHome = {
   telephone: site.phoneTel,
   email: site.email,
   image: [
+    `${SITE_URL}/assets/img/lynnwood-exterior.jpg`,
     `${SITE_URL}/assets/img/living-room.jpg`,
-    `${SITE_URL}/assets/img/kitchen.jpg`,
-    `${SITE_URL}/assets/img/dining-room.jpg`,
+    `${SITE_URL}/assets/img/lynnwood-bedroom.jpg`,
   ],
   address: {
     '@type': 'PostalAddress',

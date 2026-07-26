@@ -161,6 +161,8 @@ export const servicesFull: ServiceCard[] = [
 export const lynnwoodChips: string[] = [
   'Private rooms',
   'Vaulted-ceiling living room',
+  'Wheelchair-accessible entry',
+  'Step-free shower',
   'Open kitchen',
   'Sunny back deck',
   'Family-style dining',
@@ -169,6 +171,7 @@ export const lynnwoodChips: string[] = [
 
 export const everettChips: string[] = [
   'Private rooms',
+  'Roll-in showers',
   'Family-style dining',
   'Sunny back deck',
   'Landscaped gardens',
@@ -180,6 +183,11 @@ export type Photo = { src: string; alt: string; caption: string }
 
 export const lynnwoodGallery: Photo[] = [
   {
+    src: '/assets/img/living-room.jpg',
+    alt: 'Living room with vaulted ceilings, a chandelier, skylights, a fireplace, a large TV, and comfortable couches',
+    caption: 'The living room, with vaulted ceilings and room for everyone',
+  },
+  {
     src: '/assets/img/kitchen.jpg',
     alt: 'Open kitchen with dark wood cabinets, stone countertops, and stainless steel appliances',
     caption: 'The open kitchen, at the heart of the home',
@@ -190,13 +198,38 @@ export const lynnwoodGallery: Photo[] = [
     caption: 'The dining room, set for family-style meals',
   },
   {
-    src: '/assets/img/dining-festive.jpg',
-    alt: 'Dining area decorated with red, white, and blue balloons, stars, and American flags for the Fourth of July',
-    caption: 'Decorated for the Fourth of July, one of many holidays we celebrate',
+    src: '/assets/img/lynnwood-bedroom.jpg',
+    alt: 'A private resident bedroom with an adjustable bed, a bedside table and lamp, and a window with lace curtains',
+    caption: 'A private room, bright and ready to make your own',
+  },
+  {
+    src: '/assets/img/lynnwood-bathroom.jpg',
+    alt: 'Tiled bathroom with a vanity, a round mirror, folded towels, and a raised toilet seat with safety rails',
+    caption: 'A bathroom set up for safety, with rails within reach',
+  },
+  {
+    src: '/assets/img/lynnwood-shower.jpg',
+    alt: 'Step-free tiled shower with a grab bar, a handheld shower head, and a shower bench',
+    caption: 'A step-free shower with a bench and grab bars',
+  },
+  {
+    src: '/assets/img/back-deck.jpg',
+    alt: 'Sunny back deck with a cushioned outdoor couch, two armchairs, a coffee table, and a fenced backyard',
+    caption: 'The sunny back deck and fenced backyard',
+  },
+  {
+    src: '/assets/img/lynnwood-fountain.jpg',
+    alt: 'A tiered stone fountain on a circular paver patio, surrounded by lawn and clipped shrubs',
+    caption: 'The garden fountain, a quiet spot to sit outside',
+  },
+  {
+    src: '/assets/img/celebration-meal.jpg',
+    alt: 'Residents and a caregiver sharing a Fourth of July meal at a table decorated with balloons and flags',
+    caption: 'Sharing a Fourth of July meal together',
   },
   {
     src: '/assets/img/celebration-table.jpg',
-    alt: 'Holiday table set with a turkey, side dishes, fresh fruit, and a large bouquet of flowers',
+    alt: 'Holiday table set with a roast turkey, side dishes, cranberry sauce, and a large bouquet of flowers',
     caption: 'A holiday feast, ready for the table',
   },
 ]
@@ -226,11 +259,6 @@ export const everettGallery: Photo[] = [
     src: '/assets/img/everett-deck-flowers.jpg',
     alt: 'Close view of the deck seating area, with hydrangeas in stone planters and a rainbow pinwheel',
     caption: 'A shady corner of the deck, good for an afternoon outside',
-  },
-  {
-    src: '/assets/img/everett-back-deck.jpg',
-    alt: 'A lower deck with a cushioned outdoor couch, two armchairs, a coffee table, and a fenced back lawn beyond',
-    caption: 'The lower deck, opening onto the fenced back lawn',
   },
   {
     src: '/assets/img/everett-bathroom.jpg',
