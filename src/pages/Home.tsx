@@ -9,6 +9,7 @@ import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
 import IconBadge from '../components/ui/IconBadge'
 import ContactCard from '../components/ui/ContactCard'
+import Faq from '../components/sections/Faq'
 import Reveal from '../components/ui/Reveal'
 import { servicesOverview, site, trustStrip, values } from '../data/site'
 
@@ -48,10 +49,10 @@ export default function Home() {
                 className="absolute -top-3.5 -right-3.5 bottom-3.5 left-3.5 -rotate-[2.5deg] rounded-card bg-teal-tint"
               />
               <img
-                src="/assets/img/living-room.jpg"
+                src="/assets/img/living-room.webp"
                 alt="The bright living room of our Lynnwood home, with vaulted ceilings, a chandelier, fireplace, and comfortable couches"
-                width={1179}
-                height={1584}
+                width={893}
+                height={1200}
                 className="relative max-h-[540px] w-full rounded-card object-cover shadow-float"
               />
               <div className="absolute -bottom-[1.1rem] -left-[1.1rem] z-[2] flex items-center gap-[0.6rem] rounded-pill bg-white px-[1.2rem] py-[0.65rem] text-[0.95rem] font-extrabold shadow-card">
@@ -103,10 +104,10 @@ export default function Home() {
             <Reveal>
               <figure>
                 <img
-                  src="/assets/img/dining-room.jpg"
+                  src="/assets/img/dining-room.webp"
                   alt="The dining room of our Lynnwood home with a large table, bay window, and natural light"
-                  width={1179}
-                  height={2556}
+                  width={554}
+                  height={1200}
                   loading="lazy"
                   className="max-h-[520px] w-full rounded-card object-cover shadow-card"
                 />
@@ -188,7 +189,7 @@ export default function Home() {
               <article className="flex h-full flex-col overflow-hidden rounded-card border border-line bg-white shadow-soft transition-[transform,box-shadow] duration-200 hover:-translate-y-1 hover:shadow-card">
                 <div className="relative aspect-[16/9]">
                   <img
-                    src="/assets/img/lynnwood-exterior.jpg"
+                    src="/assets/img/lynnwood-exterior.webp"
                     alt="The Lynnwood home behind cherry trees in blossom, with a fountain in the front lawn and a ramp to the front door"
                     loading="lazy"
                     className="h-full w-full object-cover"
@@ -220,7 +221,7 @@ export default function Home() {
               <article className="flex h-full flex-col overflow-hidden rounded-card border border-line bg-white shadow-soft transition-[transform,box-shadow] duration-200 hover:-translate-y-1 hover:shadow-card">
                 <div className="relative aspect-[16/9]">
                   <img
-                    src="/assets/img/everett-exterior.jpg"
+                    src="/assets/img/everett-exterior.webp"
                     alt="The Everett home on a sunny day, with a terraced garden and a balcony above the entry"
                     loading="lazy"
                     className="h-full w-full object-cover"
@@ -251,8 +252,10 @@ export default function Home() {
         </Container>
       </Section>
 
+      <Faq />
+
       {/* ---------- Contact ---------- */}
-      <Section id="contact">
+      <Section id="contact" alt>
         <Container>
           <SectionHead center kicker="Contact" title="Come see what home feels like">
             The best way to choose a home is to walk through it. Reach out and we'll set up a tour at either home. No

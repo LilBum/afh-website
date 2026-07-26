@@ -82,6 +82,19 @@ function seoHtml(): Plugin {
         fileName: 'robots.txt',
         source: ['User-agent: *', 'Allow: /', '', `Sitemap: ${SITE_URL}/sitemap.xml`, ''].join('\n'),
       })
+
+      // Cloudflare Pages equivalent of the rewrites in vercel.json. Status 200 makes each a
+      // rewrite rather than a redirect, so the URL the visitor sees does not change. Harmless
+      // on Vercel, which ignores the file, so the build stays portable between both hosts.
+      this.emitFile({
+        type: 'asset',
+        fileName: '_redirects',
+        source: [
+          ...routeSeo.filter((r) => r.file !== 'index.html').map((r) => `${r.path} /${r.file} 200`),
+          '/* /index.html 200',
+          '',
+        ].join('\n'),
+      })
     },
   }
 }

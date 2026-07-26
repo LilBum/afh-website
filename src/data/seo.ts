@@ -6,6 +6,7 @@
 // link unfurlers see the right title, description, canonical and JSON-LD without running JS.
 
 import { areasServed, geo, googleBusinessProfile, site } from './contact'
+import { faqs } from './site'
 
 /** No custom domain yet. Change this one line when one is pointed at the Vercel project. */
 export const SITE_URL = 'https://afh-kg.vercel.app'
@@ -103,9 +104,9 @@ const lynnwoodHome = compact({
   telephone: site.phoneTel,
   email: site.email,
   image: [
-    `${SITE_URL}/assets/img/lynnwood-exterior.jpg`,
-    `${SITE_URL}/assets/img/living-room.jpg`,
-    `${SITE_URL}/assets/img/lynnwood-bedroom.jpg`,
+    `${SITE_URL}/assets/img/lynnwood-exterior.webp`,
+    `${SITE_URL}/assets/img/living-room.webp`,
+    `${SITE_URL}/assets/img/lynnwood-bedroom.webp`,
   ],
   address: {
     '@type': 'PostalAddress',
@@ -135,9 +136,9 @@ const everettHome = compact({
   telephone: site.phoneTel,
   email: site.email,
   image: [
-    `${SITE_URL}/assets/img/everett-exterior.jpg`,
-    `${SITE_URL}/assets/img/everett-bedroom.jpg`,
-    `${SITE_URL}/assets/img/everett-dining.jpg`,
+    `${SITE_URL}/assets/img/everett-exterior.webp`,
+    `${SITE_URL}/assets/img/everett-bedroom.webp`,
+    `${SITE_URL}/assets/img/everett-dining.webp`,
   ],
   // Street address is deliberately withheld until the owners publish it.
   address: {
@@ -153,6 +154,19 @@ const everettHome = compact({
   parentOrganization: { '@id': ORG_ID },
   hasOfferCatalog: offerCatalog('Care and services at Aging with Grace AFH'),
 })
+
+// Google now shows FAQ rich results almost only for government and health authorities, so the
+// value here is the content itself ranking for long-tail questions and being quotable by answer
+// engines. The markup costs nothing and keeps the option open.
+const faqPage = {
+  '@type': 'FAQPage',
+  '@id': `${SITE_URL}/#faq`,
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.q,
+    acceptedAnswer: { '@type': 'Answer', text: faq.a },
+  })),
+}
 
 function breadcrumb(name: string, path: string) {
   return {
@@ -197,6 +211,7 @@ export const routeSeo: RouteSeo[] = [
         organization,
         lynnwoodHome,
         everettHome,
+        faqPage,
       ],
     },
   },
