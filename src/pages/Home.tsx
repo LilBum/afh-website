@@ -78,6 +78,80 @@ export default function Home() {
         </Container>
       </div>
 
+      {/* ---------- Our two homes ---------- */}
+      <Section id="homes" alt>
+        <Container>
+          <SectionHead center kicker="Our two homes" title="Two homes, one standard of care">
+            Both homes are family-style houses in quiet neighborhoods, not facilities. Choose the one closest to you.
+          </SectionHead>
+          <div className="grid grid-cols-1 gap-[1.6rem] sm:grid-cols-2">
+            <Reveal className="h-full">
+              <article className="flex h-full flex-col overflow-hidden rounded-card border border-line bg-white shadow-soft transition-[transform,box-shadow] duration-200 hover:-translate-y-1 hover:shadow-card">
+                <div className="relative aspect-[16/9]">
+                  <img
+                    src="/assets/img/lynnwood-exterior.webp"
+                    alt="The Lynnwood home behind cherry trees in blossom, with a fountain in the front lawn and a ramp to the front door"
+                    loading="lazy"
+                    className="h-full w-full object-cover"
+                  />
+                  <span className="absolute left-4 top-4 rounded-pill bg-white px-[0.95rem] py-[0.35rem] text-[0.85rem] font-extrabold text-teal-deep shadow-soft">
+                    📸 Photo tour available
+                  </span>
+                </div>
+                <div className="flex flex-1 flex-col px-[1.6rem] pt-[1.6rem] pb-[1.8rem]">
+                  <h3 className="mb-[0.4rem] text-[1.45rem]">A&amp;D Home Care</h3>
+                  <p className="mb-[0.8rem] flex items-center gap-[0.45rem] text-base font-bold text-ink-soft">
+                    <MapPin size={18} className="shrink-0" aria-hidden />
+                    {site.lynnwood.oneLine}
+                  </p>
+                  <p className="flex-1 text-[1.02rem] text-ink-soft">
+                    A bright, spacious home on a quiet residential street, with a vaulted-ceiling living room, open
+                    kitchen, family-style dining, and a sunny back deck.
+                  </p>
+                  <div className="mt-[1.3rem] self-start">
+                    <Button to="/lynnwood" variant="primary">
+                      See the Lynnwood home
+                    </Button>
+                  </div>
+                </div>
+              </article>
+            </Reveal>
+
+            <Reveal className="h-full">
+              <article className="flex h-full flex-col overflow-hidden rounded-card border border-line bg-white shadow-soft transition-[transform,box-shadow] duration-200 hover:-translate-y-1 hover:shadow-card">
+                <div className="relative aspect-[16/9]">
+                  <img
+                    src="/assets/img/everett-exterior.webp"
+                    alt="The Everett home on a sunny day, with a terraced garden and a balcony above the entry"
+                    loading="lazy"
+                    className="h-full w-full object-cover"
+                  />
+                  <span className="absolute left-4 top-4 rounded-pill bg-white px-[0.95rem] py-[0.35rem] text-[0.85rem] font-extrabold text-teal-deep shadow-soft">
+                    📸 Photo tour available
+                  </span>
+                </div>
+                <div className="flex flex-1 flex-col px-[1.6rem] pt-[1.6rem] pb-[1.8rem]">
+                  <h3 className="mb-[0.4rem] text-[1.45rem]">Aging with Grace AFH</h3>
+                  <p className="mb-[0.8rem] flex items-center gap-[0.45rem] text-base font-bold text-ink-soft">
+                    <MapPin size={18} className="shrink-0" aria-hidden />
+                    Everett, Washington
+                  </p>
+                  <p className="flex-1 text-[1.02rem] text-ink-soft">
+                    Our Everett home offers the same warm, family-style care, with landscaped gardens, a sunny back
+                    deck, and a table always set for family-style meals.
+                  </p>
+                  <div className="mt-[1.3rem] self-start">
+                    <Button to="/everett" variant="primary">
+                      See the Everett home
+                    </Button>
+                  </div>
+                </div>
+              </article>
+            </Reveal>
+          </div>
+        </Container>
+      </Section>
+
       {/* ---------- Why an adult family home? ---------- */}
       <Section id="why-afh">
         <Container>
@@ -178,84 +252,10 @@ export default function Home() {
         </Container>
       </Section>
 
-      {/* ---------- Our two homes ---------- */}
-      <Section id="homes" alt>
-        <Container>
-          <SectionHead center kicker="Our two homes" title="Two homes, one standard of care">
-            Both homes are family-style houses in quiet neighborhoods, not facilities. Choose the one closest to you.
-          </SectionHead>
-          <div className="grid grid-cols-1 gap-[1.6rem] sm:grid-cols-2">
-            <Reveal className="h-full">
-              <article className="flex h-full flex-col overflow-hidden rounded-card border border-line bg-white shadow-soft transition-[transform,box-shadow] duration-200 hover:-translate-y-1 hover:shadow-card">
-                <div className="relative aspect-[16/9]">
-                  <img
-                    src="/assets/img/lynnwood-exterior.webp"
-                    alt="The Lynnwood home behind cherry trees in blossom, with a fountain in the front lawn and a ramp to the front door"
-                    loading="lazy"
-                    className="h-full w-full object-cover"
-                  />
-                  <span className="absolute left-4 top-4 rounded-pill bg-white px-[0.95rem] py-[0.35rem] text-[0.85rem] font-extrabold text-teal-deep shadow-soft">
-                    📸 Photo tour available
-                  </span>
-                </div>
-                <div className="flex flex-1 flex-col px-[1.6rem] pt-[1.6rem] pb-[1.8rem]">
-                  <h3 className="mb-[0.4rem] text-[1.45rem]">A&amp;D Home Care</h3>
-                  <p className="mb-[0.8rem] flex items-center gap-[0.45rem] text-base font-bold text-ink-soft">
-                    <MapPin size={18} className="shrink-0" aria-hidden />
-                    {site.lynnwood.oneLine}
-                  </p>
-                  <p className="flex-1 text-[1.02rem] text-ink-soft">
-                    A bright, spacious home on a quiet residential street, with a vaulted-ceiling living room, open
-                    kitchen, family-style dining, and a sunny back deck.
-                  </p>
-                  <div className="mt-[1.3rem] self-start">
-                    <Button to="/lynnwood" variant="primary">
-                      See the Lynnwood home
-                    </Button>
-                  </div>
-                </div>
-              </article>
-            </Reveal>
-
-            <Reveal className="h-full">
-              <article className="flex h-full flex-col overflow-hidden rounded-card border border-line bg-white shadow-soft transition-[transform,box-shadow] duration-200 hover:-translate-y-1 hover:shadow-card">
-                <div className="relative aspect-[16/9]">
-                  <img
-                    src="/assets/img/everett-exterior.webp"
-                    alt="The Everett home on a sunny day, with a terraced garden and a balcony above the entry"
-                    loading="lazy"
-                    className="h-full w-full object-cover"
-                  />
-                  <span className="absolute left-4 top-4 rounded-pill bg-white px-[0.95rem] py-[0.35rem] text-[0.85rem] font-extrabold text-teal-deep shadow-soft">
-                    📸 Photo tour available
-                  </span>
-                </div>
-                <div className="flex flex-1 flex-col px-[1.6rem] pt-[1.6rem] pb-[1.8rem]">
-                  <h3 className="mb-[0.4rem] text-[1.45rem]">Aging with Grace AFH</h3>
-                  <p className="mb-[0.8rem] flex items-center gap-[0.45rem] text-base font-bold text-ink-soft">
-                    <MapPin size={18} className="shrink-0" aria-hidden />
-                    Everett, Washington
-                  </p>
-                  <p className="flex-1 text-[1.02rem] text-ink-soft">
-                    Our Everett home offers the same warm, family-style care, with landscaped gardens, a sunny back
-                    deck, and a table always set for family-style meals.
-                  </p>
-                  <div className="mt-[1.3rem] self-start">
-                    <Button to="/everett" variant="primary">
-                      See the Everett home
-                    </Button>
-                  </div>
-                </div>
-              </article>
-            </Reveal>
-          </div>
-        </Container>
-      </Section>
-
       <Faq />
 
       {/* ---------- Contact ---------- */}
-      <Section id="contact" alt>
+      <Section id="contact">
         <Container>
           <SectionHead center kicker="Contact" title="Come see what home feels like">
             The best way to choose a home is to walk through it. Reach out and we'll set up a tour at either home. No

@@ -2,7 +2,9 @@ import { useEffect } from 'react'
 import { BrowserRouter, Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom'
 import TopBar from './components/layout/TopBar'
 import Navbar from './components/layout/Navbar'
+import AvailabilityBanner from './components/layout/AvailabilityBanner'
 import Footer from './components/layout/Footer'
+import MobileCallBar from './components/layout/MobileCallBar'
 import Home from './pages/Home'
 import Lynnwood from './pages/Lynnwood'
 import Everett from './pages/Everett'
@@ -24,15 +26,18 @@ function ScrollManager() {
 }
 
 function Layout() {
+  // Bottom padding on phones so the fixed call bar never covers the end of the footer.
   return (
-    <div className="overflow-x-hidden">
+    <div className="overflow-x-hidden pb-[4.6rem] md:pb-0">
       <ScrollManager />
       <TopBar />
       <Navbar />
+      <AvailabilityBanner />
       <main>
         <Outlet />
       </main>
       <Footer />
+      <MobileCallBar />
     </div>
   )
 }

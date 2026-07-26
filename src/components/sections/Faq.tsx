@@ -7,7 +7,7 @@ import Reveal from '../ui/Reveal'
 /** Common questions, using native <details> so answers are in the DOM for crawlers. */
 export default function Faq() {
   return (
-    <Section id="faq">
+    <Section id="faq" alt>
       <Container>
         <SectionHead center kicker="Common questions" title="What families ask us first">
           If your question is not here, call and ask. We would rather answer it now than have you wonder.

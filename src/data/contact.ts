@@ -18,6 +18,15 @@ export const site = {
 } as const
 
 /**
+ * Current openings, shown as a banner under the nav when set.
+ *
+ * None of the competing adult family home sites publish this, and it is the first thing a
+ * family with an urgent need looks for, so it is worth keeping accurate. Set to null when both
+ * homes are full: an out-of-date "room available" costs more trust than saying nothing.
+ */
+export const availability: { text: string; home?: 'lynnwood' | 'everett' } | null = null
+
+/**
  * Google Business Profile URLs, one per home. Fill these in after each profile is created and
  * verified: they become `sameAs` in the structured data, which is how Google ties this site to
  * the profile. An empty string is omitted rather than published as a dead link.
