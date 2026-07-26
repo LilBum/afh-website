@@ -72,10 +72,11 @@ export const servicesOverview: ServiceCard[] = [
     icon: SquarePlus,
     title: 'Specialized Care',
     items: [
+      'Dementia & Alzheimer’s care',
+      'Mental health care',
       'Medication management',
       'Diabetes care',
       'Stroke (CVA) care',
-      'Wound care',
       'Hospice care',
     ],
   },
@@ -127,6 +128,9 @@ export const servicesFull: ServiceCard[] = [
     icon: SquarePlus,
     title: 'Specialized Services',
     items: [
+      'Dementia & Alzheimer’s care',
+      'Memory care & supervision',
+      'Mental health care',
       'Medication management',
       'Diabetes care',
       'Incontinence care',
@@ -159,6 +163,8 @@ export const servicesFull: ServiceCard[] = [
 ]
 
 export const lynnwoodChips: string[] = [
+  'Dementia & memory care',
+  'Mental health care',
   'Private rooms',
   'Vaulted-ceiling living room',
   'Wheelchair-accessible entry',
@@ -170,6 +176,8 @@ export const lynnwoodChips: string[] = [
 ]
 
 export const everettChips: string[] = [
+  'Dementia & memory care',
+  'Mental health care',
   'Private rooms',
   'Roll-in showers',
   'Family-style dining',
@@ -223,11 +231,6 @@ export const lynnwoodGallery: Photo[] = [
     caption: 'The garden fountain, a quiet spot to sit outside',
   },
   {
-    src: '/assets/img/celebration-meal.jpg',
-    alt: 'Residents and a caregiver sharing a Fourth of July meal at a table decorated with balloons and flags',
-    caption: 'Sharing a Fourth of July meal together',
-  },
-  {
     src: '/assets/img/celebration-table.jpg',
     alt: 'Holiday table set with a roast turkey, side dishes, cranberry sauce, and a large bouquet of flowers',
     caption: 'A holiday feast, ready for the table',
@@ -269,10 +272,5 @@ export const everettGallery: Photo[] = [
     src: '/assets/img/everett-shower.jpg',
     alt: 'A tiled roll-in shower with grab bars, a handheld shower head, and a wheeled shower chair',
     caption: 'Roll-in showers with grab bars and shower chairs',
-  },
-  {
-    src: '/assets/img/everett-celebration.jpg',
-    alt: 'Three residents in party hats celebrating a birthday at a festive table with a cake, balloons, and a Happy Birthday banner',
-    caption: 'Celebrating a birthday together, because we make a fuss over every one',
   },
 ]

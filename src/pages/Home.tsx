@@ -90,6 +90,11 @@ export default function Home() {
                 day and at night.
               </p>
               <p className="mt-4">
+                Both of our homes are licensed for <strong>dementia and Alzheimer's care</strong> and{' '}
+                <strong>mental health care</strong>, so a resident whose needs change over time can usually stay with
+                the caregivers they already know.
+              </p>
+              <p className="mt-4">
                 When seniors require 24-hour specialized care and are at risk of injuring themselves, they should
                 consider moving to an adult family home, with both day and night professional licensed care, in a house
                 that feels like a home instead of a facility.

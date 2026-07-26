@@ -5,7 +5,7 @@
 // a static HTML file per route. The static copy is what matters for search: crawlers and
 // link unfurlers see the right title, description, canonical and JSON-LD without running JS.
 
-import { areasServed, site } from './contact'
+import { areasServed, geo, googleBusinessProfile, site } from './contact'
 
 /** No custom domain yet. Change this one line when one is pointed at the Vercel project. */
 export const SITE_URL = 'https://afh-kg.vercel.app'
@@ -18,6 +18,10 @@ const EVERETT_ID = `${SITE_URL}/everett#home`
 
 /** Care needs families actually search for. Mirrors `servicesFull` in site.ts. */
 const CARE_SERVICES = [
+  'Dementia care',
+  'Alzheimer’s care',
+  'Memory care',
+  'Mental health care',
   '24-hour care',
   'Medication management',
   'Diabetes care',
@@ -51,6 +55,18 @@ const OPEN_ALWAYS = [
   },
 ]
 
+/** Drops empty/null keys, so an unconfirmed fact is omitted rather than published blank. */
+function compact<T extends Record<string, unknown>>(obj: T): T {
+  return Object.fromEntries(
+    Object.entries(obj).filter(([, v]) => v !== null && v !== undefined && v !== ''),
+  ) as T
+}
+
+function geoFor(home: 'lynnwood' | 'everett') {
+  const coords = geo[home]
+  return coords ? { '@type': 'GeoCoordinates', ...coords } : null
+}
+
 function offerCatalog(name: string) {
   return {
     '@type': 'OfferCatalog',
@@ -75,15 +91,14 @@ const organization = {
     'Two licensed adult family homes providing 24-hour senior care in Lynnwood and Everett, Washington.',
 }
 
-// No geo coordinates: the exact latitude/longitude has not been confirmed, and a guessed
-// pin is worse than none. Add `geo` once the owners verify it.
-const lynnwoodHome = {
+// `geo` and `sameAs` stay absent until the values are confirmed; see data/contact.ts.
+const lynnwoodHome = compact({
   '@type': 'LocalBusiness',
   '@id': LYNNWOOD_ID,
   name: 'A&D Home Care',
   alternateName: 'A&D Home Care Adult Family Home',
   description:
-    'Licensed adult family home in Lynnwood, Washington, with private rooms, family-style dining and 24-hour professional care.',
+    'Licensed adult family home in Lynnwood, Washington, with dementia and mental health care, private rooms, family-style dining and 24-hour professional care.',
   url: `${SITE_URL}/lynnwood`,
   telephone: site.phoneTel,
   email: site.email,
@@ -100,20 +115,22 @@ const lynnwoodHome = {
     postalCode: '98036',
     addressCountry: 'US',
   },
+  geo: geoFor('lynnwood'),
+  sameAs: googleBusinessProfile.lynnwood || null,
   hasMap: site.lynnwood.mapsUrl,
   areaServed: AREA_SERVED,
   openingHoursSpecification: OPEN_ALWAYS,
   parentOrganization: { '@id': ORG_ID },
   hasOfferCatalog: offerCatalog('Care and services at A&D Home Care'),
-}
+})
 
-const everettHome = {
+const everettHome = compact({
   '@type': 'LocalBusiness',
   '@id': EVERETT_ID,
   name: 'Aging with Grace AFH',
   alternateName: 'Aging with Grace Adult Family Home',
   description:
-    'Licensed adult family home in Everett, Washington, with private rooms, roll-in showers, landscaped gardens and 24-hour professional care.',
+    'Licensed adult family home in Everett, Washington, with dementia and mental health care, private rooms, roll-in showers and 24-hour professional care.',
   url: `${SITE_URL}/everett`,
   telephone: site.phoneTel,
   email: site.email,
@@ -129,11 +146,13 @@ const everettHome = {
     addressRegion: 'WA',
     addressCountry: 'US',
   },
+  geo: geoFor('everett'),
+  sameAs: googleBusinessProfile.everett || null,
   areaServed: AREA_SERVED,
   openingHoursSpecification: OPEN_ALWAYS,
   parentOrganization: { '@id': ORG_ID },
   hasOfferCatalog: offerCatalog('Care and services at Aging with Grace AFH'),
-}
+})
 
 function breadcrumb(name: string, path: string) {
   return {
@@ -161,8 +180,8 @@ export const routeSeo: RouteSeo[] = [
   {
     path: '/',
     file: 'index.html',
-    title: 'Adult Family Homes in Lynnwood & Everett, WA | A&D Home Care',
-    description: `Licensed adult family homes in Lynnwood and Everett, WA. 24-hour care, RN on call, private rooms and home-cooked meals, serving Snohomish County. Call ${site.phone}.`,
+    title: 'Adult Family Homes in Lynnwood & Everett, WA | Dementia & Senior Care',
+    description: `Licensed adult family homes in Lynnwood and Everett, WA. Dementia, memory and mental health care, 24-hour care, RN on call, private rooms. Serving Snohomish County. Call ${site.phone}.`,
     image: `${SITE_URL}/assets/og/og-home.jpg`,
     jsonLd: {
       '@context': 'https://schema.org',
@@ -184,8 +203,8 @@ export const routeSeo: RouteSeo[] = [
   {
     path: '/lynnwood',
     file: 'lynnwood.html',
-    title: 'Adult Family Home in Lynnwood, WA | A&D Home Care',
-    description: `Licensed adult family home in Lynnwood, WA. Private rooms, 24-hour care, RN on call, medication management, diabetes, stroke and hospice care. Call ${site.phone}.`,
+    title: 'Adult Family Home in Lynnwood, WA | Dementia & Memory Care',
+    description: `A&D Home Care is a licensed adult family home in Lynnwood, WA. Dementia, memory and mental health care, private rooms, 24-hour care, RN on call, step-free showers. Call ${site.phone}.`,
     image: `${SITE_URL}/assets/og/og-lynnwood.jpg`,
     jsonLd: {
       '@context': 'https://schema.org',
@@ -195,8 +214,8 @@ export const routeSeo: RouteSeo[] = [
   {
     path: '/everett',
     file: 'everett.html',
-    title: 'Adult Family Home in Everett, WA | Aging with Grace AFH',
-    description: `Licensed adult family home in Everett, WA. Private rooms, 24-hour care, RN on call, roll-in showers, home-cooked meals and family-style dining. Call ${site.phone}.`,
+    title: 'Adult Family Home in Everett, WA | Dementia & Memory Care',
+    description: `Aging with Grace AFH is a licensed adult family home in Everett, WA. Dementia, memory and mental health care, private rooms, 24-hour care, RN on call, roll-in showers. Call ${site.phone}.`,
     image: `${SITE_URL}/assets/og/og-everett.jpg`,
     jsonLd: {
       '@context': 'https://schema.org',

@@ -116,21 +116,21 @@ npm run lint      # eslint
       10-photo tour. `back-deck.jpg` had been mislabelled: it is the Lynnwood deck, and was
       briefly moved to Everett before the owner corrected it.
 - [ ] **Google Business Profile for each home** (highest-impact item left, and not a code
-      change). Create and verify a profile per home at business.google.com, category
-      "Adult family home" / "Assisted living facility", link it to the matching page on this
-      site, add the same photos, and keep the name/address/phone byte-identical to
-      `data/contact.ts`. Then ask satisfied families for reviews. Without this the site will
-      not appear in the map pack no matter how good the on-page SEO is.
+      change). Full setup sheet, with the exact strings to paste, the category decision and the
+      photo lists, is in [docs/google-business-profile.md](docs/google-business-profile.md).
+      Once a profile is verified, the only code change is filling in `googleBusinessProfile`
+      and `geo` in `data/contact.ts`; both are omitted from the structured data while empty.
 - [ ] **Submit the sitemap** to Google Search Console and Bing Webmaster Tools
       (`https://afh-kg.vercel.app/sitemap.xml`), then request indexing for all three URLs.
 - [ ] **Free AFH directory listings** with a link back: WA DSHS adult family home locator,
       Caring.com, APlaceForMom, SeniorAdvisor, Yelp. Local citations are a big local-SEO
       signal and cost nothing.
-- [ ] **Confirm memory / dementia care** wording. "Forgetful, needs help remembering" is on
-      the home page, but *dementia* and *memory care* are never used, and those are among the
-      highest-volume searches families run. Add them only if the homes genuinely provide it.
-- [ ] **Resident photo consent.** `celebration-meal.jpg` and `everett-celebration.jpg` show
-      identifiable residents. Confirm written consent is on file for each person shown.
+- [x] **Dementia / mental health care** confirmed by the owners on 2026-07-26 and now named in
+      the titles, descriptions, chips, both service lists, the JSON-LD service catalogue, and
+      the why-an-AFH copy. These are the highest-volume searches in this vertical.
+- [x] **No resident photos.** Removed at the owners' request on 2026-07-26
+      (`celebration-meal.jpg`, `everett-celebration.jpg`). Nothing on the site shows an
+      identifiable resident. If one is ever added, get written consent from the person shown.
 - [ ] **Everett address & phone**: published when the owners want them public. Publishing the
       street address would also let `geo` and a Google Business Profile be added for Everett.
 - [ ] **Verify service lists**: confirm both homes offer everything listed (esp. specialized
