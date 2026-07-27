@@ -9,6 +9,7 @@ import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
 import IconBadge from '../components/ui/IconBadge'
 import ContactCard from '../components/ui/ContactCard'
+import Caregivers from '../components/sections/Caregivers'
 import Faq from '../components/sections/Faq'
 import Reveal from '../components/ui/Reveal'
 import { servicesOverview, site, trustStrip, values } from '../data/site'
@@ -152,8 +153,10 @@ export default function Home() {
         </Container>
       </Section>
 
+      <Caregivers />
+
       {/* ---------- Why an adult family home? ---------- */}
-      <Section id="why-afh">
+      <Section id="why-afh" alt>
         <Container>
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
             <Reveal>
@@ -195,7 +198,7 @@ export default function Home() {
       </Section>
 
       {/* ---------- Values ---------- */}
-      <Section id="we-believe" alt>
+      <Section id="we-believe">
         <Container>
           <SectionHead center kicker="We believe…" title="What matters most is the care" />
           <Reveal>
@@ -218,7 +221,7 @@ export default function Home() {
       </Section>
 
       {/* ---------- Services overview ---------- */}
-      <Section id="services">
+      <Section id="services" alt>
         <Container>
           <SectionHead center kicker="Care & services" title="Everything your loved one needs, under one roof">
             From daily personal care to specialized nursing support, the same full set of services at both of our
@@ -255,7 +258,7 @@ export default function Home() {
       <Faq />
 
       {/* ---------- Contact ---------- */}
-      <Section id="contact">
+      <Section id="contact" alt>
         <Container>
           <SectionHead center kicker="Contact" title="Come see what home feels like">
             The best way to choose a home is to walk through it. Reach out and we'll set up a tour at either home. No

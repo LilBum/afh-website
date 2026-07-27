@@ -44,7 +44,7 @@ Services section instead.
 | Street address | `3111 201st Pl SW` |
 | City / State / ZIP | `Lynnwood`, `WA`, `98036` |
 | Phone | `(425) 773-0844` |
-| Website | `https://afh-kg.vercel.app/lynnwood` |
+| Website | `https://kingsgateafh.org/lynnwood` |
 | Hours | Open 24 hours, all 7 days |
 
 ## Aging with Grace AFH (Everett)
@@ -55,7 +55,7 @@ Services section instead.
 | Street address | *not yet public, see note below* |
 | City / State | `Everett`, `WA` |
 | Phone | `(425) 773-0844` |
-| Website | `https://afh-kg.vercel.app/everett` |
+| Website | `https://kingsgateafh.org/everett` |
 | Hours | Open 24 hours, all 7 days |
 
 **The Everett address is deliberately not on the website.** A Google Business Profile requires a
@@ -132,7 +132,7 @@ one, get written consent from the person shown first.
 
 1. **Ask families for reviews.** Review count and recency are among the strongest map-pack
    signals, and this vertical runs on trust. Google supplies a short review link per profile.
-2. **Submit the sitemap** (`https://afh-kg.vercel.app/sitemap.xml`) in Google Search Console
+2. **Submit the sitemap** (`https://kingsgateafh.org/sitemap.xml`) in Google Search Console
    and Bing Webmaster Tools, then request indexing for all three URLs.
 3. **Free directory listings**, each linking back to the matching page: the WA DSHS adult
    family home locator, Caring.com, APlaceForMom, SeniorAdvisor, Yelp. Consistent citations

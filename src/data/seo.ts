@@ -8,8 +8,11 @@
 import { areasServed, geo, googleBusinessProfile, site } from './contact'
 import { faqs } from './site'
 
-/** No custom domain yet. Change this one line when one is pointed at the Vercel project. */
-export const SITE_URL = 'https://afh-kg.vercel.app'
+/**
+ * Every canonical, Open Graph URL, sitemap entry and robots.txt line derives from this.
+ * Changing it is the whole domain switch.
+ */
+export const SITE_URL = 'https://kingsgateafh.org'
 
 const BRAND = 'A&D Home Care & Aging with Grace AFH'
 
@@ -68,6 +71,14 @@ function geoFor(home: 'lynnwood' | 'everett') {
   return coords ? { '@type': 'GeoCoordinates', ...coords } : null
 }
 
+function licenseId(number: string) {
+  return {
+    '@type': 'PropertyValue',
+    name: 'Washington State DSHS adult family home license',
+    value: number,
+  }
+}
+
 function offerCatalog(name: string) {
   return {
     '@type': 'OfferCatalog',
@@ -79,10 +90,13 @@ function offerCatalog(name: string) {
   }
 }
 
+// The parent corporation, which is why the site lives on kingsgateafh.org. Both homes hang off
+// this as `parentOrganization`. Swap `name` for the exact registered legal name when confirmed.
 const organization = {
   '@type': 'Organization',
   '@id': ORG_ID,
-  name: BRAND,
+  name: 'Kingsgate',
+  alternateName: BRAND,
   url: SITE_URL,
   logo: `${SITE_URL}/assets/favicon.svg`,
   telephone: site.phoneTel,
@@ -118,6 +132,7 @@ const lynnwoodHome = compact({
   },
   geo: geoFor('lynnwood'),
   sameAs: googleBusinessProfile.lynnwood || null,
+  identifier: licenseId(site.lynnwood.license),
   hasMap: site.lynnwood.mapsUrl,
   areaServed: AREA_SERVED,
   openingHoursSpecification: OPEN_ALWAYS,
@@ -149,6 +164,7 @@ const everettHome = compact({
   },
   geo: geoFor('everett'),
   sameAs: googleBusinessProfile.everett || null,
+  identifier: licenseId(site.everett.license),
   areaServed: AREA_SERVED,
   openingHoursSpecification: OPEN_ALWAYS,
   parentOrganization: { '@id': ORG_ID },

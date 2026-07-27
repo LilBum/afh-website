@@ -2,14 +2,15 @@
 
 Marketing site for two adult family homes under the same owners:
 **A&D Home Care** (Lynnwood, WA) and **Aging with Grace AFH** (Everett, WA).
-Built with **Vite + React + TypeScript + Tailwind CSS 4** (same stack as the portfolio).
-Hosted on Vercel.
+Both trade as **Kingsgate**, which is why the site lives on kingsgateafh.org.
+Built with **Vite + React + TypeScript + Tailwind CSS 4**. Moving from Vercel to
+Cloudflare Pages, see [docs/cloudflare-migration.md](docs/cloudflare-migration.md).
 
 ## Pages (client-side routes)
 
 | Route | Status |
 |---|---|
-| `/` | Landing: hero, why-an-AFH, values, services overview, both-homes cards, contact |
+| `/` | Landing: hero, trust strip, both-homes cards, caregiver credentials, why-an-AFH, values, services, FAQ, contact |
 | `/lynnwood` | **A&D Home Care, fully built**: photo tour (10 photos + lightbox), quick facts, full service lists, visit info, tour CTA |
 | `/everett` | **Aging with Grace AFH, fully built**: photo tour (8 photos + lightbox), quick facts, full service lists, visit info, tour CTA |
 
@@ -56,14 +57,16 @@ src/
     ambientMusic.ts     Web-Audio generative ambient pad engine
   components/
     Seo.tsx             per-route <title>/<meta>/JSON-LD (React 19 hoisting)
-    layout/             TopBar, Navbar, Footer, MusicToggle
+    layout/             TopBar, Navbar, AvailabilityBanner, Footer, MusicToggle,
+                        MobileCallBar
     ui/                 Button, Container, Section, Kicker, SectionHead,
                         Card, IconBadge, ContactCard, Reveal
-    sections/           Gallery (+ lightbox), ServiceColumns, CtaBand
+    sections/           Gallery (+ lightbox), Caregivers, Faq, ServiceColumns, CtaBand
   pages/                Home, Lynnwood, Everett
 public/
   favicon.svg           house+heart logo mark
-  assets/img/           web-optimized JPGs (long edge ≤1600 px, EXIF stripped, ~170–550 KB each)
+  assets/img/           WebP, long edge ≤1200 px, EXIF stripped, ~60–330 KB each
+  assets/og/            1200x630 social previews, JPEG because some scrapers reject WebP
 images/                 original photos & reference screenshots (NOT deployed)
 ```
 
@@ -92,6 +95,10 @@ npm run lint      # eslint
 - **Aging with Grace AFH (Everett):** address intentionally private for now
   ("shared when you arrange a visit")
 - **Email:** gabi_badet@yahoo.com
+- **DSHS licences:** A&D Home Care `750676`, Aging with Grace AFH `753460`. Shown in the
+  footer and as `identifier` on each LocalBusiness. No competing local site publishes theirs.
+- **Care team:** the owner has 21 years of experience and is a Registered Nursing Assistant
+  (NAR); the team includes 1 RN, 2 CNAs and credentialed home care aides.
 
 ## Content notes
 
@@ -102,13 +109,14 @@ npm run lint      # eslint
   Trim anything these two homes don't actually offer.
 - **Strip EXIF from every photo before publishing it.** Phone photos carry GPS coordinates, and
   the Everett address is deliberately not published, so shipping the original file would leak it.
-  Re-saving through Pillow without passing `exif=` drops all metadata (see the `everett-*.jpg`
-  set, all of which are clean).
+  Re-saving through Pillow without passing `exif=` drops all metadata (see the `everett-*.webp`
+  set, all of which are clean). `scripts/process-photos.py` does this; run it when new
+  photos arrive rather than converting anything by hand.
 
 ## TODO
 
 - [x] **Everett photos**: `/everett` now has a real hero + 8-photo `<Gallery>`, and the home
-      "Our Homes" card shows a real photo. Assets in `public/assets/img/everett-*.jpg`,
+      "Our Homes" card shows a real photo. Assets in `public/assets/img/everett-*.webp`,
       data in `everettGallery` (`src/data/site.ts`). Replaced with the owner's own higher-res
       set on 2026-07-26, which added a private room, two bathroom/roll-in-shower shots, and
       the front garden.
@@ -121,7 +129,7 @@ npm run lint      # eslint
       Once a profile is verified, the only code change is filling in `googleBusinessProfile`
       and `geo` in `data/contact.ts`; both are omitted from the structured data while empty.
 - [ ] **Submit the sitemap** to Google Search Console and Bing Webmaster Tools
-      (`https://afh-kg.vercel.app/sitemap.xml`), then request indexing for all three URLs.
+      (`https://kingsgateafh.org/sitemap.xml`), then request indexing for all three URLs.
 - [ ] **Free AFH directory listings** with a link back: WA DSHS adult family home locator,
       Caring.com, APlaceForMom, SeniorAdvisor, Yelp. Local citations are a big local-SEO
       signal and cost nothing.
@@ -133,6 +141,12 @@ npm run lint      # eslint
       identifiable resident. If one is ever added, get written consent from the person shown.
 - [ ] **Everett address & phone**: published when the owners want them public. Publishing the
       street address would also let `geo` and a Google Business Profile be added for Everett.
+- [ ] **Testimonials**: the owners said later. Two or three, first name and city, would
+      close the largest remaining trust gap; both competing local sites have one.
+- [ ] **Owner name on the site**: the caregiver section says "our owner" rather than
+      naming her, because the name was never confirmed for publication. Confirm and add.
+- [ ] **Contact form**: all three competing sites have one; this site only has tel: and
+      mailto: links. Needs a form service or a Cloudflare Pages Function.
 - [ ] **Verify service lists**: confirm both homes offer everything listed (esp. specialized
       services like tube feeding, Foley catheter, hospice).
 - [ ] **Custom domain + canonical/OG tags**: once a domain is pointed at the Vercel project.

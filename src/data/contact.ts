@@ -11,10 +11,23 @@ export const site = {
     cityState: 'Lynnwood, WA 98036',
     oneLine: '3111 201st Pl SW, Lynnwood, WA 98036',
     mapsUrl: 'https://maps.google.com/?q=3111+201st+Pl+SW,+Lynnwood,+WA+98036',
+    license: '750676',
   },
   everett: {
     cityState: 'Everett, Washington',
+    license: '753460',
   },
+} as const
+
+/**
+ * Who actually provides the care. None of the competing local sites name a credential, and it
+ * is the thing families are really deciding on, so it is worth stating plainly.
+ */
+export const team = {
+  ownerYears: 21,
+  ownerCredential: 'Registered Nursing Assistant (NAR)',
+  registeredNurses: 1,
+  certifiedNursingAssistants: 2,
 } as const
 
 /**

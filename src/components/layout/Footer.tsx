@@ -69,7 +69,10 @@ export default function Footer() {
           <span>
             © {year} A&amp;D Home Care · Aging with Grace AFH. All rights reserved.
           </span>
-          <span>Licensed Adult Family Homes, Washington State</span>
+          <span>
+            Licensed Washington State Adult Family Homes · A&amp;D Home Care #{site.lynnwood.license} · Aging with
+            Grace AFH #{site.everett.license}
+          </span>
         </div>
       </Container>
     </footer>
