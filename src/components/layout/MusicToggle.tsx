@@ -1,43 +1,42 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Music, Pause } from 'lucide-react'
 import { AmbientMusic } from '../../lib/ambientMusic'
 import { cn } from '../../lib/cn'
 
 const PREF_KEY = 'afh-music'
 
-/** Floating button that toggles the generative ambient pad (replaces js/music.js). */
+/** Toggles the generative ambient pad. On by default; an explicit "off" is remembered. */
 export default function MusicToggle() {
   const engineRef = useRef<AmbientMusic | null>(null)
   const [playing, setPlaying] = useState(false)
 
-  const getEngine = () => {
+  const getEngine = useCallback(() => {
     if (!engineRef.current) engineRef.current = new AmbientMusic()
     return engineRef.current
+  }, [])
+
+  const remember = (value: 'on' | 'off') => {
+    try {
+      localStorage.setItem(PREF_KEY, value)
+    } catch {
+      /* localStorage may be unavailable */
+    }
   }
 
-  const toggle = () => {
+  const toggle = async () => {
     const engine = getEngine()
     if (playing) {
       engine.stop()
       setPlaying(false)
-      try {
-        localStorage.setItem(PREF_KEY, 'off')
-      } catch {
-        /* localStorage may be unavailable */
-      }
-    } else {
-      engine.start()
-      setPlaying(true)
-      try {
-        localStorage.setItem(PREF_KEY, 'on')
-      } catch {
-        /* localStorage may be unavailable */
-      }
+      remember('off')
+      return
     }
+    setPlaying(await engine.start())
+    remember('on')
   }
 
-  // If music was on during a previous visit, resume on the first interaction
-  // (browsers require a user gesture before audio can start).
+  // Start automatically unless the visitor has previously switched it off. Browsers block
+  // audio until a user gesture, so retry on the first interaction if the initial try fails.
   useEffect(() => {
     let pref: string | null = null
     try {
@@ -45,23 +44,29 @@ export default function MusicToggle() {
     } catch {
       /* ignore */
     }
-    if (pref !== 'on') return
+    if (pref === 'off') return
 
-    const resume = () => {
-      getEngine().start()
-      setPlaying(true)
-      cleanup()
+    let settled = false
+    const attempt = async () => {
+      if (settled) return
+      if (await getEngine().start()) {
+        settled = true
+        setPlaying(true)
+        removeListeners()
+      }
     }
-    const cleanup = () => {
-      document.removeEventListener('pointerdown', resume)
-      document.removeEventListener('keydown', resume)
+    const removeListeners = () => {
+      document.removeEventListener('pointerdown', attempt)
+      document.removeEventListener('keydown', attempt)
     }
-    document.addEventListener('pointerdown', resume, { once: true })
-    document.addEventListener('keydown', resume, { once: true })
-    return cleanup
-  }, [])
 
-  const label = playing ? 'Pause background music' : 'Play calming background music'
+    void attempt()
+    document.addEventListener('pointerdown', attempt)
+    document.addEventListener('keydown', attempt)
+    return removeListeners
+  }, [getEngine])
+
+  const label = playing ? 'Turn off background music' : 'Turn on calming background music'
 
   return (
     <button
@@ -71,11 +76,11 @@ export default function MusicToggle() {
       aria-label={label}
       title={label}
       className={cn(
-        'fixed bottom-[1.2rem] right-[1.2rem] z-[60] grid h-14 w-14 place-items-center rounded-full border-2 shadow-card transition-[transform,background-color] duration-150 hover:-translate-y-0.5',
+        'relative grid h-9 w-9 shrink-0 place-items-center rounded-full border-2 transition-[transform,background-color] duration-150 hover:-translate-y-0.5 md:h-10 md:w-10',
         playing ? 'music-pulse border-teal bg-teal text-white' : 'border-teal bg-white text-teal-deep',
       )}
     >
-      {playing ? <Pause size={22} strokeWidth={2.6} aria-hidden /> : <Music size={24} aria-hidden />}
+      {playing ? <Pause size={17} strokeWidth={2.6} aria-hidden /> : <Music size={18} aria-hidden />}
     </button>
   )
 }

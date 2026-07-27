@@ -1,22 +1,24 @@
 import { useCallback, useEffect, useState } from 'react'
 import { ChevronLeft, ChevronRight, X } from 'lucide-react'
-import { lynnwoodGallery } from '../../data/site'
+import type { Photo } from '../../data/site'
 import Container from '../ui/Container'
 import Section from '../ui/Section'
 import SectionHead from '../ui/SectionHead'
 import Reveal from '../ui/Reveal'
 
-const COUNT = lynnwoodGallery.length
-
 /** Photo grid + accessible lightbox (replaces the lightbox logic in js/main.js). */
-export default function Gallery() {
+export default function Gallery({ photos }: { photos: Photo[] }) {
+  const count = photos.length
   const [index, setIndex] = useState<number | null>(null)
   const open = index !== null
 
   const close = useCallback(() => setIndex(null), [])
-  const step = useCallback((delta: number) => {
-    setIndex((i) => (i === null ? i : (i + delta + COUNT) % COUNT))
-  }, [])
+  const step = useCallback(
+    (delta: number) => {
+      setIndex((i) => (i === null ? i : (i + delta + count) % count))
+    },
+    [count],
+  )
 
   useEffect(() => {
     if (!open) return
@@ -33,16 +35,16 @@ export default function Gallery() {
     }
   }, [open, close, step])
 
-  const photo = index !== null ? lynnwoodGallery[index] : null
+  const photo = index !== null ? photos[index] : null
 
   return (
     <Section id="gallery" alt>
       <Container>
         <SectionHead kicker="Photo tour" title="Step inside">
-          Every photo below is the actual home — click any picture to see it full size.
+          Every photo below is the actual home. Click any picture to see it full size.
         </SectionHead>
         <div className="grid grid-cols-1 gap-[1.2rem] sm:grid-cols-2 lg:grid-cols-3">
-          {lynnwoodGallery.map((p, i) => (
+          {photos.map((p, i) => (
             <Reveal key={p.src} delay={(i % 3) * 0.05}>
               <button
                 type="button"

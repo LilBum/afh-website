@@ -10,7 +10,7 @@ type Props = {
   className?: string
 }
 
-/** Kicker + heading + optional lead — mirrors `.section-head`. */
+/** Kicker + heading + optional lead, mirrors `.section-head`. */
 export default function SectionHead({ kicker, title, children, center, className }: Props) {
   return (
     <div className={cn('mb-12 max-w-[720px]', center && 'mx-auto text-center', className)}>

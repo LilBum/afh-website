@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
-import { site } from '../../data/site'
+import { areasServed, site } from '../../data/site'
 import Container from '../ui/Container'
 
 const year = new Date().getFullYear()
+const nearbyCities = areasServed.filter((city) => city !== 'Snohomish County')
 
 export default function Footer() {
   return (
@@ -15,8 +16,11 @@ export default function Footer() {
               <b className="font-head text-[1.2rem] text-white">A&amp;D Home Care &amp; Aging with Grace AFH</b>
             </div>
             <p className="text-[0.98rem]">
-              Two family-style adult family homes caring for seniors in Lynnwood and Everett, Washington — with
+              Two family-style adult family homes caring for seniors in Lynnwood and Everett, Washington, with
               compassion, respect, and 24-hour professional care.
+            </p>
+            <p className="mt-[0.8rem] text-[0.92rem]">
+              Serving {nearbyCities.join(', ')} and the rest of Snohomish County.
             </p>
           </div>
 
@@ -26,10 +30,10 @@ export default function Footer() {
             </h4>
             <ul className="space-y-[0.55rem] text-[0.98rem]">
               <li>
-                <FooterLink to="/lynnwood">A&amp;D Home Care — Lynnwood</FooterLink>
+                <FooterLink to="/lynnwood">A&amp;D Home Care, Lynnwood</FooterLink>
               </li>
               <li>
-                <FooterLink to="/everett">Aging with Grace AFH — Everett</FooterLink>
+                <FooterLink to="/everett">Aging with Grace AFH, Everett</FooterLink>
               </li>
               <li>
                 <FooterLink to="/#services">Care &amp; services</FooterLink>
@@ -65,7 +69,10 @@ export default function Footer() {
           <span>
             © {year} A&amp;D Home Care · Aging with Grace AFH. All rights reserved.
           </span>
-          <span>Licensed Adult Family Homes — Washington State</span>
+          <span>
+            Licensed Washington State Adult Family Homes · A&amp;D Home Care #{site.lynnwood.license} · Aging with
+            Grace AFH #{site.everett.license}
+          </span>
         </div>
       </Container>
     </footer>

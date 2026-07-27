@@ -125,10 +125,18 @@ export class AmbientMusic {
     this.sparkleTimer = window.setTimeout(this.scheduleSparkle, 5000 + Math.random() * 6000)
   }
 
-  start(): void {
+  /** Resolves false when the browser is still blocking audio (needs a user gesture first). */
+  async start(): Promise<boolean> {
     if (!this.ctx) this.buildGraph()
-    if (!this.ctx || !this.master) return
-    if (this.ctx.state === 'suspended') void this.ctx.resume()
+    if (!this.ctx || !this.master) return false
+    if (this.ctx.state === 'suspended') {
+      try {
+        await this.ctx.resume()
+      } catch {
+        /* autoplay blocked until the visitor interacts */
+      }
+    }
+    if (this.ctx.state !== 'running') return false
     this.playing = true
     const now = this.ctx.currentTime
     this.master.gain.cancelScheduledValues(now)
@@ -136,6 +144,7 @@ export class AmbientMusic {
     this.master.gain.linearRampToValueAtTime(MASTER_LEVEL, now + 2.5)
     this.scheduleChord()
     this.sparkleTimer = window.setTimeout(this.scheduleSparkle, 6000)
+    return true
   }
 
   stop(): void {
