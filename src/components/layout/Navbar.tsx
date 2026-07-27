@@ -32,14 +32,28 @@ export default function Navbar() {
   return (
     <div className="sticky top-0 z-50 border-b border-line bg-cream/90 backdrop-blur-md">
       <Container>
-        <nav className="flex items-center gap-3 py-[0.8rem] md:gap-6" aria-label="Main navigation">
-          <Link to="/" className="mr-auto flex items-center gap-[0.65rem] no-underline" onClick={() => setOpen(false)}>
-            <img src="/assets/favicon.svg" alt="" width={42} height={42} className="rounded-[10px]" />
-            <span>
-              <b className="block whitespace-nowrap font-head text-[1rem] leading-[1.2] text-ink sm:text-[1.12rem]">
+        {/* Tightest point is 768px, where the desktop links appear but the container is still
+            narrow, so the gap only opens up at lg. */}
+        <nav className="flex items-center gap-3 py-[0.8rem] md:gap-4 lg:gap-6" aria-label="Main navigation">
+          {/* min-w-0 lets this shrink; without it the nowrap brand set a hard floor that pushed
+              the menu button off the edge of a 320px screen. */}
+          <Link
+            to="/"
+            className="mr-auto flex min-w-0 items-center gap-[0.5rem] no-underline sm:gap-[0.65rem]"
+            onClick={() => setOpen(false)}
+          >
+            <img
+              src="/assets/favicon.svg"
+              alt=""
+              width={42}
+              height={42}
+              className="h-9 w-9 shrink-0 rounded-[10px] sm:h-[42px] sm:w-[42px]"
+            />
+            <span className="min-w-0">
+              <b className="block font-head text-[0.92rem] leading-[1.2] text-ink sm:whitespace-nowrap sm:text-[1.12rem]">
                 A&amp;D Home Care
               </b>
-              <b className="block whitespace-nowrap font-head text-[1rem] leading-[1.2] text-teal-deep sm:text-[1.12rem]">
+              <b className="block font-head text-[0.92rem] leading-[1.2] text-teal-deep sm:whitespace-nowrap sm:text-[1.12rem]">
                 &amp; Aging with Grace AFH
               </b>
             </span>
