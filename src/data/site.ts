@@ -28,7 +28,7 @@ export type Feature = { icon: LucideIcon; label: string }
 
 export const trustStrip: Feature[] = [
   { icon: Clock, label: '24-Hour Care' },
-  { icon: ShieldCheck, label: 'RN on Staff & On Call' },
+  { icon: ShieldCheck, label: 'RN Available as Needed' },
   { icon: Home, label: 'Home Doctor on Call' },
   { icon: BedDouble, label: 'Private Rooms' },
   { icon: CookingPot, label: 'Home-Cooked Meals' },
@@ -63,7 +63,7 @@ export const servicesOverview: ServiceCard[] = [
     items: [
       'Personalized care plans',
       'Comprehensive health monitoring',
-      'RN on staff and on call',
+      'RN available as needed',
       'Home doctor on call',
       '24-hour care',
     ],
@@ -119,7 +119,7 @@ export const servicesFull: ServiceCard[] = [
       'Personalized care plans',
       'Emotional security & support',
       'Comprehensive health monitoring',
-      'RN on staff and on call',
+      'RN available as needed',
       'Home doctor on call',
       '24-hour care',
     ],
@@ -210,7 +210,7 @@ export const faqs: Faq[] = [
   },
   {
     q: 'What level of medical care can you provide?',
-    a: 'A registered nurse works on our team and is on call around the clock, as is a home doctor. We provide medication management, diabetes care, wound care, stroke recovery care, oxygen therapy, tube feeding, catheter and incontinence care, and hospice care. If you are weighing whether we can meet a specific medical need, call us and we will tell you honestly.',
+    a: 'A registered nurse is available as needed, and a home doctor is on call. We provide medication management, diabetes care, wound care, stroke recovery care, oxygen therapy, tube feeding, catheter and incontinence care, and hospice care. If you are weighing whether we can meet a specific medical need, call us and we will tell you honestly.',
   },
   {
     q: 'Does Medicaid pay for adult family home care in Washington?',

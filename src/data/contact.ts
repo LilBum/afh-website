@@ -22,13 +22,16 @@ export const site = {
 /**
  * Who actually provides the care. None of the competing local sites name a credential, and it
  * is the thing families are really deciding on, so it is worth stating plainly.
+ *
+ * The registered nurse is available as needed rather than employed, so no RN headcount is
+ * recorded here and nothing on the site says "on staff".
  */
 export const team = {
   ownerName: 'Gabriela Badet',
   ownerYears: 21,
   ownerCredential: 'Registered Nursing Assistant (NAR)',
-  registeredNurses: 1,
-  certifiedNursingAssistants: 2,
+  /** Credentials the caregiving staff hold, per the owners. No headcounts: those change. */
+  staffCredentials: ['NARs', 'CNAs', 'home care aides'],
 } as const
 
 /**

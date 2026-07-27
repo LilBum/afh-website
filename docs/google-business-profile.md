@@ -75,7 +75,8 @@ Under 750 characters, and the first sentence matters most. Lynnwood:
 
 > A&D Home Care is a licensed adult family home in Lynnwood, WA, providing 24-hour care for
 > seniors in a real house rather than a facility. We are licensed for dementia and Alzheimer's
-> care and mental health care, with private rooms, an RN and home doctor on call, medication
+> care and mental health care, with private rooms, a registered nurse available as needed, a
+> home doctor on call, caregivers who are NARs, CNAs and home care aides, medication
 > management, diabetes, stroke, wound and hospice care. Residents share home-cooked meals at a
 > family table, and the home has a wheelchair-accessible entry, a step-free shower, a vaulted
 > living room and a sunny back deck. We serve Lynnwood, Edmonds, Mountlake Terrace, Brier and
@@ -93,7 +94,8 @@ Paste these individually so each becomes a searchable service. They match `servi
 Dementia & Alzheimer's care · Memory care & supervision · Mental health care ·
 Medication management · Diabetes care · Incontinence care · Wound care · Oxygen therapy ·
 Tube feeding · Stroke (CVA) care · Foley catheter · Bowel & bladder retraining · Cancer care ·
-Congestive heart failure · Hospice care · 24-hour care · RN on call · Home doctor on call ·
+Congestive heart failure · Hospice care · 24-hour care · RN available as needed ·
+Home doctor on call ·
 Private rooms · Home-cooked meals · Mobility & transfer assistance · Laundry & housekeeping
 
 ## Attributes to tick

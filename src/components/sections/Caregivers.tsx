@@ -7,6 +7,10 @@ import Card from '../ui/Card'
 import IconBadge from '../ui/IconBadge'
 import Reveal from '../ui/Reveal'
 
+/** "a, b, and c" rather than the bare comma list a join() would give. */
+const listWithAnd = (items: readonly string[]) =>
+  items.length < 2 ? (items[0] ?? '') : `${items.slice(0, -1).join(', ')}, and ${items[items.length - 1]}`
+
 const credentials = [
   {
     icon: Award,
@@ -17,15 +21,14 @@ const credentials = [
   {
     icon: Stethoscope,
     stat: 'Registered nurse',
-    label: 'On staff and on call',
-    detail: 'A registered nurse works on our team and is on call around the clock, as is a home doctor.',
+    label: 'Available as needed',
+    detail: 'A registered nurse is available as needed, and a home doctor is on call.',
   },
   {
     icon: UserCheck,
-    stat: 'Certified aides',
+    stat: 'Credentialed staff',
     label: 'Every shift',
-    detail:
-      'Two certified nursing assistants and a team of credentialed home care aides, all state-registered.',
+    detail: `Our caregivers are ${listWithAnd(team.staffCredentials)}, all credentialed in Washington State.`,
   },
   {
     icon: HeartHandshake,

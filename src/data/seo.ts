@@ -220,7 +220,7 @@ export const routeSeo: RouteSeo[] = [
     path: '/',
     file: 'index.html',
     title: 'Adult Family Homes in Lynnwood & Everett, WA | Dementia & Senior Care',
-    description: `Licensed adult family homes in Lynnwood and Everett, WA. Dementia, memory and mental health care, 24-hour care, RN on staff, private rooms. Serving Snohomish County. Call ${site.phone}.`,
+    description: `Licensed adult family homes in Lynnwood and Everett, WA. Dementia, memory and mental health care, 24-hour care, RN available as needed, private rooms. Serving Snohomish County. Call ${site.phone}.`,
     image: `${SITE_URL}/assets/og/og-home.jpg`,
     jsonLd: {
       '@context': 'https://schema.org',
@@ -244,7 +244,7 @@ export const routeSeo: RouteSeo[] = [
     path: '/lynnwood',
     file: 'lynnwood.html',
     title: 'Adult Family Home in Lynnwood, WA | Dementia & Memory Care',
-    description: `A&D Home Care is a licensed adult family home in Lynnwood, WA. Dementia, memory and mental health care, private rooms, 24-hour care, RN on staff, step-free showers. Call ${site.phone}.`,
+    description: `A&D Home Care is a licensed adult family home in Lynnwood, WA. Dementia, memory and mental health care, private rooms, 24-hour care, RN as needed, step-free showers. Call ${site.phone}.`,
     image: `${SITE_URL}/assets/og/og-lynnwood.jpg`,
     jsonLd: {
       '@context': 'https://schema.org',
@@ -255,7 +255,7 @@ export const routeSeo: RouteSeo[] = [
     path: '/everett',
     file: 'everett.html',
     title: 'Adult Family Home in Everett, WA | Dementia & Memory Care',
-    description: `Aging with Grace AFH is a licensed adult family home in Everett, WA. Dementia, memory and mental health care, private rooms, 24-hour care, RN on staff, roll-in showers. Call ${site.phone}.`,
+    description: `Aging with Grace AFH is a licensed adult family home in Everett, WA. Dementia, memory and mental health care, private rooms, 24-hour care, RN as needed, roll-in showers. Call ${site.phone}.`,
     image: `${SITE_URL}/assets/og/og-everett.jpg`,
     jsonLd: {
       '@context': 'https://schema.org',

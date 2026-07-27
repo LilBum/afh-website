@@ -98,7 +98,8 @@ npm run lint      # eslint
 - **DSHS licences:** A&D Home Care `750676`, Aging with Grace AFH `753460`. Shown in the
   footer and as `identifier` on each LocalBusiness. No competing local site publishes theirs.
 - **Care team:** the owner has 21 years of experience and is a Registered Nursing Assistant
-  (NAR); the team includes 1 RN, 2 CNAs and credentialed home care aides.
+  (NAR); the caregiving staff are NARs, CNAs and home care aides, with a registered nurse
+  available as needed. Do not write "RN on staff": the nurse is not employed by the homes.
 
 ## Content notes
 
