@@ -163,19 +163,19 @@ export default function Home() {
               <Kicker>Why an adult family home?</Kicker>
               <h2 className="mb-[1.1rem]">A real home, with real care, day and night</h2>
               <p>
-                <strong>Adult family homes</strong> are for those who are forgetful, may fall, need help remembering
-                things, need assistance with activities of daily living, or need monitoring and supervision during the
-                day and at night.
+                <strong>Adult family homes</strong> provide a safe, supportive environment for individuals who may
+                experience memory loss, have an increased risk of falls, need assistance with daily activities, benefit
+                from medication reminders, or require supervision throughout the day and night.
               </p>
               <p className="mt-4">
-                Both of our homes are licensed for <strong>dementia and Alzheimer's care</strong> and{' '}
-                <strong>mental health care</strong>, so a resident whose needs change over time can usually stay with
-                the caregivers they already know.
+                Both of our homes are licensed to provide{' '}
+                <strong>dementia, Alzheimer's, and mental health care</strong>. As a resident's needs change over time,
+                they can often continue living in the same familiar home with the caregivers they know and trust.
               </p>
               <p className="mt-4">
-                When seniors require 24-hour specialized care and are at risk of injuring themselves, they should
-                consider moving to an adult family home, with both day and night professional licensed care, in a house
-                that feels like a home instead of a facility.
+                For seniors who need around-the-clock support or specialized care to ensure their safety and well-being,
+                an adult family home offers 24-hour professional, licensed care in a warm, home-like setting, providing
+                the comfort of a real home rather than the feel of an institution.
               </p>
             </Reveal>
             <Reveal>
