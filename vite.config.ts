@@ -3,6 +3,8 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { SITE_URL, routeSeo, type RouteSeo } from './src/data/seo'
 
+import { cloudflare } from "@cloudflare/vite-plugin";
+
 const escapeAttr = (value: string) => value.replace(/&/g, '&amp;').replace(/"/g, '&quot;')
 const escapeText = (value: string) => value.replace(/&/g, '&amp;').replace(/</g, '&lt;')
 
@@ -28,7 +30,7 @@ function headFor(route: RouteSeo): string {
     `<script type="application/ld+json">${JSON.stringify(route.jsonLd).replace(/</g, '\\u003c')}</script>`,
   ]
     .map((tag) => `    ${tag}`)
-    .join('\n')
+    .join('\n');
 }
 
 /**
@@ -98,10 +100,10 @@ function seoHtml(): Plugin {
         source: template.replace('</head>', `${headFor(routeSeo[0])}\n  </head>`),
       })
     },
-  }
+  };
 }
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss(), seoHtml()],
+  plugins: [react(), tailwindcss(), seoHtml(), cloudflare()],
 })
