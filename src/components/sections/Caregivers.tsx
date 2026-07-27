@@ -12,13 +12,13 @@ const credentials = [
     icon: Award,
     stat: `${team.ownerYears} years`,
     label: 'Owner experience',
-    detail: `Our owner has cared for seniors for ${team.ownerYears} years and is a ${team.ownerCredential}.`,
+    detail: `${team.ownerName} has cared for seniors for ${team.ownerYears} years and is a ${team.ownerCredential}.`,
   },
   {
     icon: Stethoscope,
     stat: 'Registered nurse',
-    label: 'On our team',
-    detail: 'A registered nurse is part of our care team, with a home doctor on call.',
+    label: 'On staff and on call',
+    detail: 'A registered nurse works on our team and is on call around the clock, as is a home doctor.',
   },
   {
     icon: UserCheck,
@@ -47,8 +47,8 @@ export default function Caregivers() {
     <Section id="caregivers">
       <Container>
         <SectionHead center kicker="Who looks after your family" title="A small, credentialed team">
-          Choosing a home is really choosing the people in it. Here is who will be looking after your family
-          member.
+          Choosing a home is really choosing the people in it. {team.ownerName} has run these homes for{' '}
+          {team.ownerYears} years, and this is the team who will be looking after your family member.
         </SectionHead>
         <div className="grid grid-cols-1 gap-[1.2rem] sm:grid-cols-2 lg:grid-cols-4">
           {credentials.map((item, i) => (

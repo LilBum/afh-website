@@ -40,7 +40,7 @@ export default function Home() {
                 </Button>
               </div>
               <p className="mt-[1.1rem] text-[0.95rem] font-bold text-ink-soft">
-                Family-style living · RN on call · Private rooms
+                Family-style living · RN on staff · Private rooms
               </p>
             </div>
 

@@ -24,6 +24,7 @@ export const site = {
  * is the thing families are really deciding on, so it is worth stating plainly.
  */
 export const team = {
+  ownerName: 'Gabriela Badet',
   ownerYears: 21,
   ownerCredential: 'Registered Nursing Assistant (NAR)',
   registeredNurses: 1,
