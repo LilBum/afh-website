@@ -82,23 +82,12 @@ function seoHtml(): Plugin {
         fileName: 'robots.txt',
         source: ['User-agent: *', 'Allow: /', '', `Sitemap: ${SITE_URL}/sitemap.xml`, ''].join('\n'),
       })
-
-      // Cloudflare Pages equivalent of the rewrites in vercel.json. Status 200 makes each a
-      // rewrite rather than a redirect, so the URL the visitor sees does not change. Harmless
-      // on Vercel, which ignores the file, so the build stays portable between both hosts.
-      //
-      // Deliberately no `/* /index.html 200` catch-all: Cloudflare rejects it at build time,
-      // because its clean-URL handling strips `/index` and the rewrite re-enters its own rule.
-      // Unmatched paths are handled by 404.html below instead, which is the better behaviour
-      // anyway. The old catch-all answered every typo with 200 and a page, which is a soft 404.
-      this.emitFile({
-        type: 'asset',
-        fileName: '_redirects',
-        source: [
-          ...routeSeo.filter((r) => r.file !== 'index.html').map((r) => `${r.path} /${r.file} 200`),
-          '',
-        ].join('\n'),
-      })
+      // No _redirects file is emitted. Cloudflare serves `lynnwood.html` at `/lynnwood` on its
+      // own, and redirects `/lynnwood.html` to that clean form. A `/lynnwood /lynnwood.html 200`
+      // rule fights it: the rewrite resolves to the .html path, clean-URL bounces back to
+      // `/lynnwood`, the rule fires again, and every route 307-looped until the browser gave up.
+      // The `/* /index.html 200` catch-all failed the same way, but at build time instead.
+      // Vercel does need explicit rewrites and keeps them in vercel.json.
 
       // Unknown paths: Cloudflare Pages serves this with a 404 status, and Vercel's catch-all
       // rewrite means it never fires there. The app boots and its `path="*"` route sends the
