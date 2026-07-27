@@ -86,14 +86,27 @@ function seoHtml(): Plugin {
       // Cloudflare Pages equivalent of the rewrites in vercel.json. Status 200 makes each a
       // rewrite rather than a redirect, so the URL the visitor sees does not change. Harmless
       // on Vercel, which ignores the file, so the build stays portable between both hosts.
+      //
+      // Deliberately no `/* /index.html 200` catch-all: Cloudflare rejects it at build time,
+      // because its clean-URL handling strips `/index` and the rewrite re-enters its own rule.
+      // Unmatched paths are handled by 404.html below instead, which is the better behaviour
+      // anyway. The old catch-all answered every typo with 200 and a page, which is a soft 404.
       this.emitFile({
         type: 'asset',
         fileName: '_redirects',
         source: [
           ...routeSeo.filter((r) => r.file !== 'index.html').map((r) => `${r.path} /${r.file} 200`),
-          '/* /index.html 200',
           '',
         ].join('\n'),
+      })
+
+      // Unknown paths: Cloudflare Pages serves this with a 404 status, and Vercel's catch-all
+      // rewrite means it never fires there. The app boots and its `path="*"` route sends the
+      // visitor to the home page, so a mistyped URL still lands somewhere useful.
+      this.emitFile({
+        type: 'asset',
+        fileName: '404.html',
+        source: template.replace('</head>', `${headFor(routeSeo[0])}\n  </head>`),
       })
     },
   }
