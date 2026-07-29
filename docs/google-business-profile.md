@@ -108,12 +108,12 @@ women-owned (if applicable) · Appointment required · On-site services
 Use the same files the site uses, so the profile and the site match. From
 `public/assets/img/`:
 
-- **Lynnwood**: `lynnwood-exterior.jpg` (set as the cover), `living-room.jpg`, `kitchen.jpg`,
-  `dining-room.jpg`, `lynnwood-bedroom.jpg`, `lynnwood-bathroom.jpg`, `lynnwood-shower.jpg`,
-  `back-deck.jpg`, `lynnwood-fountain.jpg`, `celebration-table.jpg`
-- **Everett**: `everett-exterior.jpg` (cover), `everett-garden.jpg`, `everett-bedroom.jpg`,
-  `everett-dining.jpg`, `everett-deck.jpg`, `everett-deck-flowers.jpg`,
-  `everett-bathroom.jpg`, `everett-shower.jpg`
+- **Lynnwood**: `lynnwood-exterior.webp` (set as the cover), `living-room.webp`, `kitchen.webp`,
+  `dining-room.webp`, `lynnwood-bedroom.webp`, `lynnwood-bathroom.webp`, `lynnwood-shower.webp`,
+  `back-deck.webp`, `lynnwood-fountain.webp`, `celebration-table.webp`
+- **Everett**: `everett-exterior.webp` (cover), `everett-garden.webp`, `everett-bedroom.webp`,
+  `everett-dining.webp`, `everett-deck.webp`, `everett-deck-flowers.webp`,
+  `everett-bathroom.webp`, `everett-shower.webp`
 
 No photos of residents are on the site or in these lists, by request. If you ever want to add
 one, get written consent from the person shown first.
@@ -127,8 +127,9 @@ one, get written consent from the person shown first.
    profile.
 2. Read the pin's latitude/longitude off the profile and put them in `geo` in the same file.
    Don't guess these, because a pin in the wrong place sends families to a stranger's door.
-3. Redeploy (`npx vercel --prod --yes`). No other code change is needed; both fields are
-   omitted from the structured data while empty, so nothing breaks before then.
+3. Commit and push. Cloudflare Pages builds from `main`, so that is the whole deploy. No
+   other code change is needed; both fields are omitted from the structured data while empty,
+   so nothing breaks before then.
 
 ## Then, in rough order of payoff
 
