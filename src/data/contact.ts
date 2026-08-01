@@ -14,7 +14,10 @@ export const site = {
     license: '750676',
   },
   everett: {
-    cityState: 'Everett, Washington',
+    street: '2825 132nd St SE',
+    cityState: 'Everett, WA 98208',
+    oneLine: '2825 132nd St SE, Everett, WA 98208',
+    mapsUrl: 'https://maps.google.com/?q=2825+132nd+St+SE,+Everett,+WA+98208',
     license: '753460',
   },
 } as const
@@ -60,8 +63,8 @@ export const googleBusinessProfile = {
  * families to a stranger's door. Left null until confirmed, and omitted while null.
  */
 export const geo: Record<'lynnwood' | 'everett', { latitude: number; longitude: number } | null> = {
-  lynnwood: null,
-  everett: null,
+  lynnwood: { latitude: 47.81636, longitude: -122.275212 },
+  everett: { latitude: 47.878331, longitude: -122.193748 },
 }
 
 /** Cities both homes draw families from, used in copy and in `areaServed`. */

@@ -164,16 +164,18 @@ const everettHome = compact({
     `${SITE_URL}/assets/img/everett-bedroom.webp`,
     `${SITE_URL}/assets/img/everett-dining.webp`,
   ],
-  // Street address is deliberately withheld until the owners publish it.
   address: {
     '@type': 'PostalAddress',
+    streetAddress: site.everett.street,
     addressLocality: 'Everett',
     addressRegion: 'WA',
+    postalCode: '98208',
     addressCountry: 'US',
   },
   geo: geoFor('everett'),
   sameAs: googleBusinessProfile.everett || null,
   identifier: licenseId(site.everett.license),
+  hasMap: site.everett.mapsUrl,
   areaServed: AREA_SERVED,
   openingHoursSpecification: OPEN_ALWAYS,
   parentOrganization: { '@id': ORG_ID },
@@ -255,7 +257,7 @@ export const routeSeo: RouteSeo[] = [
     path: '/everett',
     file: 'everett.html',
     title: 'Adult Family Home in Everett, WA | Dementia & Memory Care',
-    description: `Aging with Grace AFH is a licensed adult family home in Everett, WA. Dementia, memory and mental health care, private rooms, 24-hour care, RN as needed, roll-in showers. Call ${site.phone}.`,
+    description: `Aging with Grace AFH is a licensed adult family home at ${site.everett.oneLine}. Dementia, memory and mental health care, private rooms, 24-hour care, roll-in showers. Call ${site.phone}.`,
     image: `${SITE_URL}/assets/og/og-everett.jpg`,
     jsonLd: {
       '@context': 'https://schema.org',

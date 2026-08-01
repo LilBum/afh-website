@@ -14,8 +14,9 @@ Cloudflare Pages, see [docs/cloudflare-migration.md](docs/cloudflare-migration.m
 | `/lynnwood` | **A&D Home Care, fully built**: photo tour (10 photos + lightbox), quick facts, full service lists, visit info, tour CTA |
 | `/everett` | **Aging with Grace AFH, fully built**: photo tour (8 photos + lightbox), quick facts, full service lists, visit info, tour CTA |
 
-Routing is a React Router SPA. `vercel.json` maps `/lynnwood` and `/everett` to their own
-static HTML files and everything else to `index.html`.
+Routing is a React Router SPA. Cloudflare serves `lynnwood.html` at `/lynnwood` through its
+own clean-URL handling, so no redirect rules are needed and none are emitted; a `_redirects`
+file 307-looped every route and was removed. `vercel.json` keeps its rewrites for Vercel.
 
 ## Search / SEO
 
@@ -26,11 +27,14 @@ Open Graph/Twitter tags and JSON-LD already in `<head>`, and emits `sitemap.xml`
 
 `src/data/seo.ts` is the single source of truth, imported by both the build plugin and the
 runtime `<Seo>` component, so the static and hydrated tags cannot drift. To add a route, add an
-entry to `routeSeo` **and** a rewrite in `vercel.json`.
+entry to `routeSeo`. Cloudflare picks the new HTML file up automatically; add a rewrite to
+`vercel.json` too if Vercel is still in play.
 
-Deliberately absent from the structured data, because none of it is confirmed: `geo`
-coordinates, `aggregateRating`/reviews, and `priceRange`. A guessed map pin or an invented
-rating is worse than an omitted one.
+Both homes now carry verified `geo` coordinates and full street addresses, supplied by the
+owners on 2026-07-27. Still deliberately absent, because none of it is confirmed:
+`aggregateRating`/reviews, `priceRange`, and `sameAs` until the Google profiles exist. An
+invented rating is worse than an omitted one, and `compact()` in `seo.ts` drops empty keys
+so unconfirmed facts are never published blank.
 
 **The website is only half of local search.** Ranking in the Google "map pack" for
 *adult family home near me* comes mostly from a **Google Business Profile** for each home,
@@ -92,8 +96,8 @@ npm run lint      # eslint
 - **A&D Home Care (Lynnwood):** 3111 201st Pl SW, Lynnwood, WA 98036
   Phone (425) 773-0844 (owner's cell; the old landline/fax (425) 673-0745 was retired
   from the site on 2026-07-02 at the owner's request)
-- **Aging with Grace AFH (Everett):** address intentionally private for now
-  ("shared when you arrange a visit")
+- **Aging with Grace AFH (Everett):** 2825 132nd St SE, Everett, WA 98208
+  (published 2026-07-27 at the owners' request; it was withheld before that)
 - **Email:** gabi_badet@yahoo.com
 - **DSHS licences:** A&D Home Care `750676`, Aging with Grace AFH `753460`. Shown in the
   footer and as `identifier` on each LocalBusiness. No competing local site publishes theirs.
@@ -109,7 +113,7 @@ npm run lint      # eslint
 - Service lists are the standard WA adult-family-home service menu from those references.
   Trim anything these two homes don't actually offer.
 - **Strip EXIF from every photo before publishing it.** Phone photos carry GPS coordinates, and
-  the Everett address is deliberately not published, so shipping the original file would leak it.
+  a photo can leak a location through GPS regardless of what the page says, so strip it anyway.
   Re-saving through Pillow without passing `exif=` drops all metadata (see the `everett-*.webp`
   set, all of which are clean). `scripts/process-photos.py` does this; run it when new
   photos arrive rather than converting anything by hand.
@@ -127,8 +131,9 @@ npm run lint      # eslint
 - [ ] **Google Business Profile for each home** (highest-impact item left, and not a code
       change). Full setup sheet, with the exact strings to paste, the category decision and the
       photo lists, is in [docs/google-business-profile.md](docs/google-business-profile.md).
-      Once a profile is verified, the only code change is filling in `googleBusinessProfile`
-      and `geo` in `data/contact.ts`; both are omitted from the structured data while empty.
+      Coordinates and addresses are already in, so once a profile is verified the only code
+      change left is filling in `googleBusinessProfile` in `data/contact.ts`, which publishes
+      it as `sameAs`. It is omitted from the structured data while empty.
 - [ ] **Submit the sitemap** to Google Search Console and Bing Webmaster Tools
       (`https://kingsgateafh.org/sitemap.xml`), then request indexing for all three URLs.
 - [ ] **Free AFH directory listings** with a link back: WA DSHS adult family home locator,

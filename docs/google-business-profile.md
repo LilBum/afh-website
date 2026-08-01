@@ -52,16 +52,15 @@ Services section instead.
 | Field | Value |
 |---|---|
 | Business name | `Aging with Grace AFH` |
-| Street address | *not yet public, see note below* |
-| City / State | `Everett`, `WA` |
+| Street address | `2825 132nd St SE` |
+| City / State / ZIP | `Everett`, `WA`, `98208` |
 | Phone | `(425) 773-0844` |
 | Website | `https://kingsgateafh.org/everett` |
 | Hours | Open 24 hours, all 7 days |
 
-**The Everett address is deliberately not on the website.** A Google Business Profile requires a
-real address, though you can set it to "I deliver goods and services to my customers" and hide
-the street address publicly while still serving the local area. If you would rather publish it,
-say so and it goes on the site too, along with a map pin.
+Both addresses are now published on the site and both homes have verified coordinates in
+`src/data/contact.ts`, so each profile can be a full address listing rather than a service-area
+business. Enter the street address exactly as it appears above and in the site footer.
 
 Both homes share one phone number, which is fine. Google may flag two profiles with the same
 number as possible duplicates. If that happens, the fix is that they have distinct names and

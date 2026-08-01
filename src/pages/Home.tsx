@@ -135,7 +135,7 @@ export default function Home() {
                   <h3 className="mb-[0.4rem] text-[1.45rem]">Aging with Grace AFH</h3>
                   <p className="mb-[0.8rem] flex items-center gap-[0.45rem] text-base font-bold text-ink-soft">
                     <MapPin size={18} className="shrink-0" aria-hidden />
-                    Everett, Washington
+                    {site.everett.oneLine}
                   </p>
                   <p className="flex-1 text-[1.02rem] text-ink-soft">
                     Our Everett home offers the same warm, family-style care, with landscaped gardens, a sunny back
@@ -286,7 +286,10 @@ export default function Home() {
                   {site.lynnwood.oneLine}
                 </a>
                 <br />
-                <strong>Aging with Grace AFH:</strong> Everett, WA
+                <strong>Aging with Grace AFH:</strong>{' '}
+                <a href={site.everett.mapsUrl} target="_blank" rel="noreferrer">
+                  {site.everett.oneLine}
+                </a>
                 <br />
                 Tours daily, by appointment.
               </ContactCard>

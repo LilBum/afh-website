@@ -37,7 +37,7 @@ export default function Everett() {
                   See the photos
                 </Button>
               </div>
-              <p className="mt-[1.1rem] text-[0.95rem] font-bold text-ink-soft">{site.everett.cityState}</p>
+              <p className="mt-[1.1rem] text-[0.95rem] font-bold text-ink-soft">{site.everett.oneLine}</p>
             </div>
 
             <div className="relative mx-auto max-w-[560px] lg:max-w-none">
@@ -93,8 +93,12 @@ export default function Everett() {
           <SectionHead center kicker="Find us" title="Visit Aging with Grace" />
           <div className="grid grid-cols-1 gap-[1.3rem] lg:grid-cols-3">
             <Reveal className="h-full">
-              <ContactCard icon={MapPin} title="Location">
-                Everett, Washington. The exact address is shared when you arrange a visit.
+              <ContactCard icon={MapPin} title="Address">
+                <a href={site.everett.mapsUrl} target="_blank" rel="noreferrer">
+                  {site.everett.street}
+                  <br />
+                  {site.everett.cityState}
+                </a>
                 <br />
                 Families come to us from Everett, Mukilteo, Lynnwood, and across Snohomish County.
               </ContactCard>
