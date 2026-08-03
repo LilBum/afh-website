@@ -15,20 +15,20 @@ const credentials = [
   {
     icon: Award,
     stat: `${team.ownerYears} years`,
-    label: 'Owner experience',
-    detail: `${team.ownerName} has cared for seniors for ${team.ownerYears} years and is a ${team.ownerCredential}.`,
+    label: 'Senior care & AFH ownership',
+    detail: `${team.ownerName} founded both homes, has ${team.ownerYears} years of experience in ${team.ownerExperience}, and is a ${team.ownerCredential}.`,
   },
   {
     icon: Stethoscope,
-    stat: 'Registered nurse',
-    label: 'Available as needed',
-    detail: 'A registered nurse is available as needed, and a home doctor is on call.',
+    stat: 'RN support',
+    label: 'Delegation & consultation',
+    detail: 'A registered nurse serves both homes as a delegating nurse and consultant.',
   },
   {
     icon: UserCheck,
     stat: 'Credentialed staff',
-    label: 'Every shift',
-    detail: `Our caregivers are ${listWithAnd(team.staffCredentials)}, all credentialed in Washington State.`,
+    label: 'Current care team',
+    detail: `The current caregiving team includes ${listWithAnd(team.staffCredentials)}.`,
   },
   {
     icon: HeartHandshake,
@@ -50,8 +50,8 @@ export default function Caregivers() {
     <Section id="caregivers">
       <Container>
         <SectionHead center kicker="Who looks after your family" title="A small, credentialed team">
-          Choosing a home is really choosing the people in it. {team.ownerName} has run these homes for{' '}
-          {team.ownerYears} years, and this is the team who will be looking after your family member.
+          Choosing a home is really choosing the people in it. {team.ownerName} founded A&amp;D Home Care in 2007 and
+          Aging with Grace AFH in 2017, with {team.ownerYears} years in senior care and adult family home ownership.
         </SectionHead>
         <div className="grid grid-cols-1 gap-[1.2rem] sm:grid-cols-2 lg:grid-cols-4">
           {credentials.map((item, i) => (

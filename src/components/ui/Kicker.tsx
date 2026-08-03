@@ -6,7 +6,7 @@ export default function Kicker({ children, className }: { children: ReactNode; c
   return (
     <span
       className={cn(
-        'mb-[1.1rem] inline-block rounded-pill bg-teal-tint px-[0.9rem] py-[0.35rem] text-[0.85rem] font-extrabold uppercase tracking-[0.14em] text-teal',
+        'mb-[1.1rem] inline-block rounded-pill bg-teal-tint px-[0.9rem] py-[0.35rem] text-[0.85rem] font-extrabold uppercase tracking-[0.14em] text-teal-deep',
         className,
       )}
     >

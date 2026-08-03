@@ -7,9 +7,13 @@ import Kicker from '../components/ui/Kicker'
 import Button from '../components/ui/Button'
 import Reveal from '../components/ui/Reveal'
 import ContactCard from '../components/ui/ContactCard'
+import ResponsiveImage from '../components/ui/ResponsiveImage'
 import Gallery from '../components/sections/Gallery'
 import ServiceColumns from '../components/sections/ServiceColumns'
 import CtaBand from '../components/sections/CtaBand'
+import OfficialVerification from '../components/sections/OfficialVerification'
+import PracticalDetails from '../components/sections/PracticalDetails'
+import { googleBusinessProfile } from '../data/contact'
 import { lynnwoodChips, lynnwoodGallery, site } from '../data/site'
 
 export default function Lynnwood() {
@@ -25,11 +29,11 @@ export default function Lynnwood() {
               <Kicker>A&amp;D Home Care, our Lynnwood home</Kicker>
               <h1 className="mb-[1.2rem]">An adult family home in Lynnwood, built for comfort</h1>
               <p className="mb-8 max-w-[34rem] text-[1.25rem] text-ink-soft">
-                Vaulted ceilings, an open kitchen, a big family living room, and a sunny back deck: A&amp;D Home Care
-                gives residents room to live, not just a room to stay in.
+                A&amp;D Home Care is a Washington-licensed adult family home with 24-hour care. Vaulted ceilings, an
+                open kitchen, a big family living room, and a sunny back deck give residents room to live.
               </p>
               <div className="flex flex-wrap gap-[0.9rem]">
-                <Button href={`tel:${site.phoneTel}`} variant="coral">
+                <Button href={`tel:${site.lynnwood.phoneTel}`} variant="coral">
                   <Phone size={18} aria-hidden />
                   Schedule a tour
                 </Button>
@@ -45,9 +49,11 @@ export default function Lynnwood() {
                 aria-hidden
                 className="absolute -top-3.5 -right-3.5 bottom-3.5 left-3.5 -rotate-[2.5deg] rounded-card bg-teal-tint"
               />
-              <img
+              <ResponsiveImage
                 src="/assets/img/lynnwood-exterior.webp"
                 alt="The Lynnwood home behind cherry trees in full white blossom, with a stone fountain in the front lawn, a Welcome sign, and a wheelchair ramp to the front door"
+                fetchPriority="high"
+                sizes="(min-width: 1160px) 488px, (min-width: 1024px) calc(46vw - 48px), (min-width: 600px) 560px, calc(100vw - 40px)"
                 width={1184}
                 height={1200}
                 className="relative max-h-[540px] w-full rounded-card object-cover shadow-float"
@@ -82,9 +88,21 @@ export default function Lynnwood() {
 
       <Gallery photos={lynnwoodGallery} />
 
-      <ServiceColumns title="Everything included at A&D Home Care">
-        One familiar team of caregivers, and every service below, day and night.
+      <ServiceColumns title="Care and daily support at A&D Home Care">
+        The owner confirmed every service below for this home. Exact support still depends on assessment, the care
+        plan, caregiver scope of practice, provider orders, and nurse delegation or outside-provider coordination
+        when required.
       </ServiceColumns>
+
+      <PracticalDetails homeKey="lynnwood" homeName="A&D Home Care" home={site.lynnwood} />
+
+      <OfficialVerification
+        homeName="A&D Home Care"
+        license={site.lynnwood.license}
+        dshsServicesUrl={site.lynnwood.dshsServicesUrl}
+        dshsReportsUrl={site.lynnwood.dshsReportsUrl}
+        googleProfileUrl={googleBusinessProfile.lynnwood}
+      />
 
       {/* ---------- Visit ---------- */}
       <Section id="visit" alt>
@@ -104,21 +122,25 @@ export default function Lynnwood() {
             </Reveal>
             <Reveal className="h-full">
               <ContactCard icon={Phone} title="Phone & email">
-                Phone: <a href={`tel:${site.phoneTel}`}>{site.phone}</a>
+                Primary phone: <a href={`tel:${site.lynnwood.phoneTel}`}>{site.lynnwood.phone}</a>
                 <br />
                 <a href={`mailto:${site.email}`}>{site.email}</a>
               </ContactCard>
             </Reveal>
             <Reveal className="h-full">
               <ContactCard icon={Clock} title="Tours">
-                Daily, by appointment. Walk the home, meet the caregivers, and see if it feels right.
+                {site.lynnwood.tourPolicy}. Public contact hours are {site.lynnwood.publicContactHours.toLowerCase()}.
               </ContactCard>
             </Reveal>
           </div>
         </Container>
       </Section>
 
-      <CtaBand heading="Come walk through A&D Home Care">
+      <CtaBand
+        heading="Come walk through A&D Home Care"
+        phone={site.lynnwood.phone}
+        phoneTel={site.lynnwood.phoneTel}
+      >
         Meet the caregivers, see the rooms, and get every question answered. Tours are free, friendly, and
         obligation-free.
       </CtaBand>

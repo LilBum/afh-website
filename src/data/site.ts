@@ -28,8 +28,8 @@ export type Feature = { icon: LucideIcon; label: string }
 
 export const trustStrip: Feature[] = [
   { icon: Clock, label: '24-Hour Care' },
-  { icon: ShieldCheck, label: 'RN Available as Needed' },
-  { icon: Home, label: 'Home Doctor on Call' },
+  { icon: ShieldCheck, label: 'RN Delegation & Consultation' },
+  { icon: Home, label: 'Family-Style Homes' },
   { icon: BedDouble, label: 'Private Rooms' },
   { icon: CookingPot, label: 'Home-Cooked Meals' },
 ]
@@ -62,22 +62,21 @@ export const servicesOverview: ServiceCard[] = [
     title: 'Health Services',
     items: [
       'Personalized care plans',
-      'Comprehensive health monitoring',
-      'RN available as needed',
-      'Home doctor on call',
-      '24-hour care',
+      'Medication support',
+      'Diabetes & delegated insulin support',
+      'Higher-acuity support assessed individually',
+      '24-hour personal care & supervision',
     ],
   },
   {
     icon: SquarePlus,
     title: 'Specialized Care',
     items: [
-      'Dementia & Alzheimer’s care',
+      'Dementia & memory support',
       'Mental health care',
-      'Medication management',
-      'Diabetes care',
-      'Stroke (CVA) care',
-      'Hospice care',
+      'Complex-care support assessed individually',
+      'Nurse-delegated support',
+      'Hospice support & coordination',
     ],
   },
   {
@@ -86,78 +85,80 @@ export const servicesOverview: ServiceCard[] = [
     items: [
       'Movie nights & table games',
       'Exercise program',
-      'Music therapy',
+      'Recreational music activities',
       'Hair stylist & nails',
       'Birthday & holiday celebrations',
     ],
   },
 ]
 
-// Full service columns shown on both home (Lynnwood & Everett) pages.
+// The owners confirmed these services separately for both homes on 2026-08-02. The lists are
+// currently identical, but the page copy still qualifies clinical support by assessment, care
+// plan, scope of practice, nurse delegation, and outside-provider coordination when required.
 export const servicesFull: ServiceCard[] = [
   {
     icon: Heart,
-    title: 'Personal Service',
+    title: 'Personal Care',
     items: [
       'Bathing, bed, grooming & dressing',
-      'Personal hygiene: oral care, dentures, nails & hair',
+      'Personal hygiene, oral care & dentures',
       'Skin care',
+      'Incontinence care',
+      'Bowel & bladder retraining',
       'Laundry & housekeeping',
-      'Private room',
-      'Personal cable TV',
-      'Internet',
       'Nutritious meal preparation',
-      'Transfer assistance & transportation services',
+      'Transfer assistance',
       'Mobility assistance',
       'Safety supervision',
+      'Emotional support & family communication',
     ],
   },
   {
     icon: Activity,
-    title: 'Health Services',
+    title: 'Clinical Support',
     items: [
       'Personalized care plans',
-      'Emotional security & support',
-      'Comprehensive health monitoring',
-      'RN available as needed',
-      'Home doctor on call',
-      '24-hour care',
+      'Support based on assessed needs',
+      'Medication reminders & assistance',
+      'Medication administration support',
+      'Diabetes support',
+      'Insulin support, including delegated administration',
+      'Nurse-delegated tasks, when authorized',
+      'Wound care support',
+      'Oxygen support',
+      'Tube-feeding support',
+      'Foley catheter care',
+      'RN delegation & consultation',
     ],
   },
   {
     icon: SquarePlus,
-    title: 'Specialized Services',
+    title: 'Specialized Support',
     items: [
-      'Dementia & Alzheimer’s care',
-      'Memory care & supervision',
+      'Dementia & memory support',
       'Mental health care',
-      'Medication management',
-      'Diabetes care',
-      'Incontinence care',
-      'Wound care',
-      'Oxygen therapy',
-      'Tube feeding',
-      'Stroke (CVA) care',
-      'Foley catheter',
-      'Bowel & bladder retraining program',
-      'Cancer care',
-      'Congestive heart failure',
-      'Hospice care',
+      'Stroke/CVA recovery support',
+      'Cancer care support',
+      'Congestive heart failure support',
+      'Support for residents enrolled in hospice',
+      'Coordination with outside hospice providers',
+      '24-hour personal care & supervision',
     ],
   },
   {
     icon: Music,
-    title: 'Activities',
+    title: 'Daily Life & Activities',
     items: [
+      'Private rooms',
+      'Personal cable TV & internet',
       'In-home library',
       'Movie nights',
       'Table games',
       'Exercise program',
-      'Music therapy',
+      'Recreational music activities',
       'Hair stylist & nails',
       'Birthday celebrations',
       'Holiday celebrations',
-      'Internet & cable television',
     ],
   },
 ]
@@ -173,6 +174,8 @@ export const lynnwoodChips: string[] = [
   'Sunny back deck',
   'Family-style dining',
   'Home-cooked meals',
+  'Nurse-delegated support',
+  'Hospice coordination',
 ]
 
 export const everettChips: string[] = [
@@ -185,6 +188,8 @@ export const everettChips: string[] = [
   'Landscaped gardens',
   'Home-cooked meals',
   'Holiday & birthday celebrations',
+  'Nurse-delegated support',
+  'Hospice coordination',
 ]
 
 export type Faq = { q: string; a: string }
@@ -192,13 +197,14 @@ export type Faq = { q: string; a: string }
 /**
  * Questions families actually type into Google. Every answer here is either a general fact
  * about the Washington adult-family-home licence class or something the owners have confirmed;
- * anything home-specific (rates, current openings, Medicaid contracts) routes to a phone call
- * rather than being stated. Mirrored into FAQPage structured data in data/seo.ts.
+ * current owner-confirmed payment facts are stated with their qualifications. Rates still route
+ * to a phone call because the owners chose not to publish them. Mirrored into FAQPage structured
+ * data in data/seo.ts.
  */
 export const faqs: Faq[] = [
   {
     q: 'What is an adult family home?',
-    a: 'An adult family home is a licensed private residence where a small number of adults live and receive care. In Washington they are licensed by the Department of Social and Health Services for up to six residents, so each person gets far more individual attention than in a large facility. Both of our homes are ordinary houses in quiet residential neighborhoods, not institutions.',
+    a: 'An adult family home is a licensed private residence where a small number of adults live and receive care. Washington law normally limits an adult family home to six residents, although the Department of Social and Health Services may approve a qualified home for seven or eight. Both of our homes are ordinary houses in quiet residential neighborhoods, not institutions.',
   },
   {
     q: 'How is an adult family home different from assisted living?',
@@ -206,15 +212,15 @@ export const faqs: Faq[] = [
   },
   {
     q: 'Do you provide dementia, Alzheimer’s, or memory care?',
-    a: 'Yes. Both homes are licensed for dementia and Alzheimer’s care and for mental health care, with 24-hour supervision, medication management, and staff experienced with memory loss. Because both specialties are covered, a resident whose needs change over time can usually stay in the home and with the caregivers they already know.',
+    a: 'Yes. Washington DSHS lists Dementia and Mental Health as specialty designations for both homes. Our dementia and memory support can include care for people living with Alzheimer’s when their assessed needs can be safely met. Support includes 24-hour supervision and medication assistance. As needs change, continued placement depends on whether the home can keep meeting them safely.',
   },
   {
     q: 'What level of medical care can you provide?',
-    a: 'A registered nurse is available as needed, and a home doctor is on call. We provide medication management, diabetes care, wound care, stroke recovery care, oxygen therapy, tube feeding, catheter and incontinence care, and hospice care. If you are weighing whether we can meet a specific medical need, call us and we will tell you honestly.',
+    a: 'A registered nurse serves both homes as a delegating nurse and consultant. Depending on a resident’s assessment, care plan, scope-of-practice requirements, and any required nurse delegation or outside-provider coordination, support may include medication administration, diabetes and insulin support, wound and oxygen support, tube feeding, Foley catheter care, stroke recovery, cancer and congestive-heart-failure support, and hospice coordination. Call so we can review the exact need and confirm a safe fit.',
   },
   {
     q: 'Does Medicaid pay for adult family home care in Washington?',
-    a: 'Washington Medicaid does cover adult family home care for people who meet the financial and functional eligibility rules, usually through a COPES or similar waiver. Whether that works for your situation depends on eligibility and on current openings, so please call and we will talk it through with you.',
+    a: 'The owner reports that both homes accept private pay, Medicaid, and long-term care insurance. New Medicaid-funded placement is conditional or waitlisted, and new placements generally require 24 months of private pay before a possible transition to Medicaid. Program eligibility, insurance billing, exceptions, room and board, client responsibility, availability, and final payment terms are confirmed individually.',
   },
   {
     q: 'How much does it cost?',
@@ -291,6 +297,11 @@ export const everettGallery: Photo[] = [
     src: '/assets/img/everett-dining.webp',
     alt: 'Dining room with a dark wood table, floral-upholstered chairs, an orchid centerpiece, and the home’s licenses framed on the wall',
     caption: 'The dining room, set for family-style meals',
+  },
+  {
+    src: '/assets/img/everett-holiday-meal.webp',
+    alt: 'Holiday meal table with roast turkey, sweet potatoes, corn, green beans, flowers, and colorful place settings',
+    caption: 'A holiday meal, prepared and ready to share',
   },
   {
     src: '/assets/img/everett-deck.webp',

@@ -1,40 +1,23 @@
 # Google Business Profile setup
 
-Ranking in the Google "map pack" for searches like *adult family home near me* or
-*dementia care Lynnwood* comes mostly from a verified **Google Business Profile**, not from the
-website. The site is now set up to support the profiles; these are the values to use.
+The two public profiles already exist and the owner confirmed that both are claimed and verified.
+Manage those profiles; do not create duplicates. Account access must be granted with a Google
+Business Profile manager invitation, never by sharing a password or verification code.
 
-Create the profiles at <https://business.google.com>. **One profile per home**, because they are two
-separate locations with different names, so they need two profiles.
+Google cross-checks the business name, address, phone, hours, category, and website against the
+site and other public records. Keep each profile aligned with `src/data/contact.ts`.
 
-> **Copy the name, address and phone exactly as written below.** Google cross-checks these
-> against the website and other listings; a mismatch as small as "St" vs "Street" or a different
-> phone format weakens the match. These strings are the same ones in `src/data/contact.ts`.
+## Category: verify in the dashboard before changing
 
----
+The owner entered `Senior care` in the questionnaire, but that does not establish an exact
+selectable Google category. Google's category list can change and Google requires a category from
+the choices available in the profile editor. Do not guess or change either profile yet.
 
-## Category
-
-Type `adult family home` into the category box first and take the closest match Google offers.
-Its category list changes and is region-specific, so pick in this order:
-
-1. **Adult family home**: use it if offered. Exact match, no ambiguity.
-2. **Adult foster care service**: the usual closest match, and it maps to the same WA license class.
-3. **Assisted living facility**: the highest-search-volume option, and what most competing
-   AFHs use. But note that in Washington "Assisted Living Facility" is a *different* DSHS
-   license class from an Adult Family Home. It is a marketing category, not a legal claim, and
-   plenty of AFHs use it, so just be aware of the distinction before choosing it.
-
-Then add these as **additional** categories if available: `Group home`, `Elder care`,
-`Home health care service`.
-
-**Use the same primary category for both homes.** Primary category is the single biggest
-ranking lever in the map pack, and consistency helps both profiles.
-
-There is usually no separate "dementia care" category. Cover it in the description and the
-Services section instead.
-
----
+With manager access, record the exact current primary category and the closest exact categories
+Google offers for each profile. Choose the most specific category that describes the business,
+use as few additional categories as necessary, and use the same primary category for both homes
+only if it is accurate for both. Do not choose `Assisted living facility` or `Home health care
+service` merely for search volume. See [Google's category guidance](https://support.google.com/business/answer/7249669).
 
 ## A&D Home Care (Lynnwood)
 
@@ -43,9 +26,12 @@ Services section instead.
 | Business name | `A&D Home Care` |
 | Street address | `3111 201st Pl SW` |
 | City / State / ZIP | `Lynnwood`, `WA`, `98036` |
-| Phone | `(425) 773-0844` |
+| Primary phone | `(425) 673-0745` |
+| Additional phone | `(425) 773-0844` |
 | Website | `https://kingsgateafh.org/lynnwood` |
-| Hours | Open 24 hours, all 7 days |
+| Public profile | [Google Maps](https://www.google.com/maps/search/?api=1&query=A%26D+Home+Care%2C+3111+201st+Pl+SW%2C+Lynnwood%2C+WA+98036&query_place_id=ChIJaxJvgigFkFQRKmnvYcpcDls) |
+| Public hours | Daily, `9:30 AM–7:00 PM` |
+| Tours | Daily, by appointment |
 
 ## Aging with Grace AFH (Everett)
 
@@ -54,90 +40,131 @@ Services section instead.
 | Business name | `Aging with Grace AFH` |
 | Street address | `2825 132nd St SE` |
 | City / State / ZIP | `Everett`, `WA`, `98208` |
-| Phone | `(425) 773-0844` |
+| Primary phone | `(425) 357-8630` |
+| Additional phone | `(425) 773-0844` |
+| Fax (not a call number) | `(425) 225-5721` |
 | Website | `https://kingsgateafh.org/everett` |
-| Hours | Open 24 hours, all 7 days |
+| Public profile | [Google Maps](https://www.google.com/maps/search/?api=1&query=Aging+with+Grace+AFH%2C+2825+132nd+St+SE%2C+Everett%2C+WA+98208&query_place_id=ChIJd1Trjb8HkFQRccCFBlr-GLg) |
+| Public hours | Daily, `10:00 AM–7:00 PM` |
+| Tours | Daily, appointment required |
 
-Both addresses are now published on the site and both homes have verified coordinates in
-`src/data/contact.ts`, so each profile can be a full address listing rather than a service-area
-business. Enter the street address exactly as it appears above and in the site footer.
+Both homes display their full addresses. Each has its own confirmed primary number; the shared
+owner line is approved only as an additional number. Keep the Everett fax out of voice-phone
+fields. If DSHS or a reputable directory differs, Gabriela Badet is the authorized contact for
+corrections. Do not create a second profile or duplicate directory listing.
 
-Both homes share one phone number, which is fine. Google may flag two profiles with the same
-number as possible duplicates. If that happens, the fix is that they have distinct names and
-distinct addresses, which they do.
+## Business names and signage
 
----
+Keep the location names `A&D Home Care` and `Aging with Grace AFH`. Kingsgate AFH, Inc is their
+legal parent and public website umbrella, but the questionnaire did not establish exterior
+signage using the Kingsgate name. Do not rename either location profile to Kingsgate.
 
-## Description
+Google says businesses displaying an address should maintain permanent, fixed signage at the
+address. The owner answered `N/A` for both signage questions, so confirm the exact permanent
+exterior name before making a name or eligibility-sensitive profile change. See
+[Google's representation guidelines](https://support.google.com/business/answer/3038177).
 
-Under 750 characters, and the first sentence matters most. Lynnwood:
+## Owner-approved descriptions
 
-> A&D Home Care is a licensed adult family home in Lynnwood, WA, providing 24-hour care for
-> seniors in a real house rather than a facility. We are licensed for dementia and Alzheimer's
-> care and mental health care, with private rooms, a registered nurse available as needed, a
-> home doctor on call, caregivers who are NARs, CNAs and home care aides, medication
-> management, diabetes, stroke, wound and hospice care. Residents share home-cooked meals at a
-> family table, and the home has a wheelchair-accessible entry, a step-free shower, a vaulted
-> living room and a sunny back deck. We serve Lynnwood, Edmonds, Mountlake Terrace, Brier and
-> the rest of Snohomish County. Tours are free and by appointment. Call (425) 773-0844.
+Each description is under Google's 750-character limit. Lynnwood:
 
-Everett: same text with these swaps: name to `Aging with Grace AFH`, city to Everett, the
-amenity clause to `roll-in showers, landscaped gardens and a sunny back deck`, and the area
-served to `Everett, Mukilteo, Lynnwood and the rest of Snohomish County`.
+> A&D Home Care is a licensed adult family home in Lynnwood, WA, operated by Kingsgate AFH,
+> Inc. The home provides 24-hour resident care in a small residential setting and has DSHS
+> Dementia and Mental Health specialty designations. Support is based on each resident's
+> assessment and care plan and may include personal care, medication support, nurse-delegated
+> tasks when authorized, and coordination with outside hospice providers. The current care team
+> includes NARs, CNAs, and home care aides, with a registered nurse serving as delegating nurse
+> and consultant. Residents have private rooms, home-cooked meals, a step-free shower, and a
+> sunny deck. Tours are daily by appointment. Call (425) 673-0745.
 
-## Services to add
+Everett:
 
-Paste these individually so each becomes a searchable service. They match `servicesFull` in
-`src/data/site.ts`, so keep the two lists in step:
+> Aging with Grace AFH is a licensed adult family home in Everett, WA, operated by Kingsgate
+> AFH, Inc. The home provides 24-hour resident care in a small residential setting and has DSHS
+> Dementia and Mental Health specialty designations. Support is based on each resident's
+> assessment and care plan and may include personal care, medication support, nurse-delegated
+> tasks when authorized, and coordination with outside hospice providers. The current care team
+> includes NARs, CNAs, and home care aides, with a registered nurse serving as delegating nurse
+> and consultant. Residents have private rooms, home-cooked meals, roll-in showers, gardens, and
+> a sunny deck. Tours are daily by appointment. Call (425) 357-8630.
 
-Dementia & Alzheimer's care · Memory care & supervision · Mental health care ·
-Medication management · Diabetes care · Incontinence care · Wound care · Oxygen therapy ·
-Tube feeding · Stroke (CVA) care · Foley catheter · Bowel & bladder retraining · Cancer care ·
-Congestive heart failure · Hospice care · 24-hour care · RN available as needed ·
-Home doctor on call ·
-Private rooms · Home-cooked meals · Mobility & transfer assistance · Laundry & housekeeping
+## Services to add after scope verification
 
-## Attributes to tick
+After the current Disclosure of Services forms and RN-reviewed scope are on file, add only the
+services that match those records. Safe current entries are:
 
-Wheelchair-accessible entrance · Wheelchair-accessible restroom · Identifies as
-women-owned (if applicable) · Appointment required · On-site services
+Dementia and memory support · Mental health support · Personal care · Medication reminders and
+assistance · Incontinence care · Nurse-delegated support when authorized · Support for residents
+enrolled in hospice · Outside-hospice coordination · Private rooms · Home-cooked meals · Mobility
+and transfer assistance · Laundry and housekeeping · Exercise · Recreational music activities
+
+Do not add transportation or clinical music therapy. Keep wound, oxygen, tube-feeding, Foley,
+insulin-administration, and other high-acuity items off the profiles until the per-service scope
+has been verified against current disclosures.
+
+## Attributes
+
+The response supports `Appointment required` and on-site services. Confirm every accessibility
+or identity attribute in the profile dashboard before selecting it; the questionnaire did not
+approve a complete attribute list.
 
 ## Photos to upload
 
-Use the same files the site uses, so the profile and the site match. From
-`public/assets/img/`:
+Use the same EXIF-stripped files the site uses, so the profile and website match:
 
-- **Lynnwood**: `lynnwood-exterior.webp` (set as the cover), `living-room.webp`, `kitchen.webp`,
-  `dining-room.webp`, `lynnwood-bedroom.webp`, `lynnwood-bathroom.webp`, `lynnwood-shower.webp`,
-  `back-deck.webp`, `lynnwood-fountain.webp`, `celebration-table.webp`
-- **Everett**: `everett-exterior.webp` (cover), `everett-garden.webp`, `everett-bedroom.webp`,
-  `everett-dining.webp`, `everett-deck.webp`, `everett-deck-flowers.webp`,
-  `everett-bathroom.webp`, `everett-shower.webp`
+- **Lynnwood:** `lynnwood-exterior.webp` (cover), `living-room.webp`, `kitchen.webp`,
+  `dining-room.webp`, `lynnwood-bedroom.webp`, `lynnwood-bathroom.webp`,
+  `lynnwood-shower.webp`, `back-deck.webp`, `lynnwood-fountain.webp`, and
+  `celebration-table.webp`.
+- **Everett:** `everett-exterior.webp` (cover), `everett-garden.webp`,
+  `everett-bedroom.webp`, `everett-dining.webp`, `everett-holiday-meal.webp`,
+  `everett-deck.webp`, `everett-deck-flowers.webp`, `everett-bathroom.webp`, and
+  `everett-shower.webp`.
 
-No photos of residents are on the site or in these lists, by request. If you ever want to add
-one, get written consent from the person shown first.
+No published photo shows an identifiable resident. Obtain written consent before adding one.
 
----
+## Keep the profiles current
 
-## After each profile is verified
+1. Invite `alexanderursbadet@gmail.com` as a manager for both profiles.
+2. Verify the exact selectable primary category before changing it.
+3. Copy the matching name, address, primary phone, additional phone, website, and public hours
+   from this document; never use the fax as a call number.
+4. Keep the public profile URLs in `googleBusinessProfile` and the verified coordinates in `geo`
+   current if Google changes them.
+5. Request reviews with each profile's native review link. No review excerpts are approved for
+   the website until exact excerpts and a maintenance cadence are supplied.
+6. Post a current photo or short update regularly. Treat dated room availability as temporary and
+   reconfirm it before posting.
 
-1. Copy the profile's public URL into `googleBusinessProfile` in `src/data/contact.ts`. That
-   publishes it as `sameAs` in the structured data, which is how Google ties the site to the
-   profile.
-2. Read the pin's latitude/longitude off the profile and put them in `geo` in the same file.
-   Don't guess these, because a pin in the wrong place sends families to a stranger's door.
-3. Commit and push. Cloudflare Pages builds from `main`, so that is the whole deploy. No
-   other code change is needed; both fields are omitted from the structured data while empty,
-   so nothing breaks before then.
+## Review visibility audit — August 2, 2026
 
-## Then, in rough order of payoff
+Both public links resolve to the correct businesses. Aging with Grace currently displays a 5.0
+score and A&D Home Care displays a 4.0 score, but Google's signed-out limited Maps view does not
+consistently expose a review total or Reviews tab.
 
-1. **Ask families for reviews.** Review count and recency are among the strongest map-pack
-   signals, and this vertical runs on trust. Google supplies a short review link per profile.
-2. **Submit the sitemap** (`https://kingsgateafh.org/sitemap.xml`) in Google Search Console
-   and Bing Webmaster Tools, then request indexing for all three URLs.
-3. **Free directory listings**, each linking back to the matching page: the WA DSHS adult
-   family home locator, Caring.com, APlaceForMom, SeniorAdvisor, Yelp. Consistent citations
-   are a large local signal and cost nothing.
-4. **Post to the profiles** every few weeks. Active profiles outrank dormant ones, and a
-   photo or a note about a holiday meal is enough.
+A&D has an additional place-level restriction. Google's live place data reports that new
+contributions are disabled and previous contributions are hidden for this listing. Aging with
+Grace does not carry that restriction marker and still offers **Write a review**, so its limited
+signed-out presentation is a separate visibility issue.
+
+Verified Place IDs:
+
+- **A&D Home Care:** `ChIJaxJvgigFkFQRKmnvYcpcDls`
+- **Aging with Grace AFH:** `ChIJd1Trjb8HkFQRccCFBlr-GLg`
+
+Owner action:
+
+1. Sign into the Google account that manages each profile and open **Read reviews**.
+2. For A&D, capture the contribution-restriction notice and contact
+   [Google Business Profile support](https://support.google.com/business/gethelp).
+3. Ask whether the place-level restriction is temporary or incorrectly applied and request a
+   review. Include the Place ID, profile URL, screenshots, and the names and approximate dates of
+   any known missing reviews.
+4. For Aging with Grace, confirm the review count while signed in and record any missing review
+   dates before contacting support.
+5. Do not create a duplicate profile or change categories merely to bypass the restriction.
+
+Google documents that contributions can be restricted for a particular place or category and
+that legitimate reviews can be delayed during policy review. See
+[posting restrictions](https://support.google.com/contributionpolicy/answer/13036130) and
+[missing or delayed reviews](https://support.google.com/business/answer/10313341).

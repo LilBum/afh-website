@@ -7,9 +7,13 @@ import Kicker from '../components/ui/Kicker'
 import Button from '../components/ui/Button'
 import Reveal from '../components/ui/Reveal'
 import ContactCard from '../components/ui/ContactCard'
+import ResponsiveImage from '../components/ui/ResponsiveImage'
 import Gallery from '../components/sections/Gallery'
 import ServiceColumns from '../components/sections/ServiceColumns'
 import CtaBand from '../components/sections/CtaBand'
+import OfficialVerification from '../components/sections/OfficialVerification'
+import PracticalDetails from '../components/sections/PracticalDetails'
+import { googleBusinessProfile } from '../data/contact'
 import { everettChips, everettGallery, site } from '../data/site'
 
 export default function Everett() {
@@ -25,11 +29,11 @@ export default function Everett() {
               <Kicker>Aging with Grace AFH, our Everett home</Kicker>
               <h1 className="mb-[1.2rem]">An adult family home in Everett, warm and full of life</h1>
               <p className="mb-8 max-w-[34rem] text-[1.25rem] text-ink-soft">
-                Aging with Grace lives up to its name: family-style care in a quiet Everett neighborhood, with
-                landscaped gardens, a sunny back deck, and a table that's always set for a shared meal or a birthday.
+                Aging with Grace is a Washington-licensed adult family home with 24-hour care in a quiet Everett
+                neighborhood, with landscaped gardens, a sunny back deck, and shared meals around the table.
               </p>
               <div className="flex flex-wrap gap-[0.9rem]">
-                <Button href={`tel:${site.phoneTel}`} variant="coral">
+                <Button href={`tel:${site.everett.phoneTel}`} variant="coral">
                   <Phone size={18} aria-hidden />
                   Schedule a tour
                 </Button>
@@ -45,9 +49,11 @@ export default function Everett() {
                 aria-hidden
                 className="absolute -top-3.5 -right-3.5 bottom-3.5 left-3.5 -rotate-[2.5deg] rounded-card bg-teal-tint"
               />
-              <img
+              <ResponsiveImage
                 src="/assets/img/everett-exterior.webp"
                 alt="The Everett home on a sunny day, with a terraced garden of azaleas and evergreens, a green lawn, and a balcony above the entry"
+                fetchPriority="high"
+                sizes="(min-width: 1160px) 488px, (min-width: 1024px) calc(46vw - 48px), (min-width: 600px) 560px, calc(100vw - 40px)"
                 width={900}
                 height={1200}
                 className="relative max-h-[540px] w-full rounded-card object-cover shadow-float"
@@ -82,10 +88,21 @@ export default function Everett() {
 
       <Gallery photos={everettGallery} />
 
-      <ServiceColumns title="The same full care as our Lynnwood home">
-        Aging with Grace shares one standard of care with A&amp;D Home Care. Every service below is included, day and
-        night.
+      <ServiceColumns title="Care and daily support at Aging with Grace">
+        The owner confirmed every service below for this home. Exact support still depends on assessment, the care
+        plan, caregiver scope of practice, provider orders, and nurse delegation or outside-provider coordination
+        when required.
       </ServiceColumns>
+
+      <PracticalDetails homeKey="everett" homeName="Aging with Grace AFH" home={site.everett} />
+
+      <OfficialVerification
+        homeName="Aging with Grace AFH"
+        license={site.everett.license}
+        dshsServicesUrl={site.everett.dshsServicesUrl}
+        dshsReportsUrl={site.everett.dshsReportsUrl}
+        googleProfileUrl={googleBusinessProfile.everett}
+      />
 
       {/* ---------- Visit ---------- */}
       <Section id="visit" alt>
@@ -105,21 +122,25 @@ export default function Everett() {
             </Reveal>
             <Reveal className="h-full">
               <ContactCard icon={Phone} title="Phone & email">
-                Phone: <a href={`tel:${site.phoneTel}`}>{site.phone}</a>
+                Primary phone: <a href={`tel:${site.everett.phoneTel}`}>{site.everett.phone}</a>
                 <br />
                 <a href={`mailto:${site.email}`}>{site.email}</a>
               </ContactCard>
             </Reveal>
             <Reveal className="h-full">
               <ContactCard icon={Clock} title="Tours">
-                Daily, by appointment. Walk the home, meet the caregivers, and see if it feels right.
+                {site.everett.tourPolicy}. Public contact hours are {site.everett.publicContactHours.toLowerCase()}.
               </ContactCard>
             </Reveal>
           </div>
         </Container>
       </Section>
 
-      <CtaBand heading="Come see Aging with Grace in person">
+      <CtaBand
+        heading="Come see Aging with Grace in person"
+        phone={site.everett.phone}
+        phoneTel={site.everett.phoneTel}
+      >
         The photos tell part of the story. The rest you'll feel when you visit. Meet the caregivers, see the rooms, and
         get every question answered. Tours are free and obligation-free.
       </CtaBand>

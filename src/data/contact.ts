@@ -1,24 +1,73 @@
 // Contact + location facts. Kept free of React/icon imports so the Vite config can
 // import this at build time to generate per-route HTML, the sitemap, and robots.txt.
 
+const confirmedPayment = {
+  acceptedPrograms: [
+    'Private pay',
+    'Medicaid',
+    'long-term care insurance',
+  ],
+  medicaidIntake: 'Conditional or waitlist',
+  privatePayMonthsBeforeMedicaid: 24,
+  clientResponsibility: 'Room and board and other client responsibility are confirmed individually.',
+  ratesPublished: false,
+  confirmedBy: 'Gabriela Badet, provider',
+} as const
+
+export const businessIdentity = {
+  legalName: 'Kingsgate AFH, Inc',
+  publicName: 'Kingsgate AFH, Inc',
+  relationship: 'Legal parent of A&D Home Care and Aging with Grace AFH',
+  founder: 'Gabriela Badet',
+} as const
+
 export const site = {
-  name: 'A&D Home Care',
+  name: businessIdentity.publicName,
+  /** Shared owner contact approved for both homes. Each location also has a primary number. */
   phone: '(425) 773-0844',
   phoneTel: '+14257730844',
   email: 'gabi_badet@yahoo.com',
   lynnwood: {
+    name: 'A&D Home Care',
     street: '3111 201st Pl SW',
     cityState: 'Lynnwood, WA 98036',
     oneLine: '3111 201st Pl SW, Lynnwood, WA 98036',
+    phone: '(425) 673-0745',
+    phoneTel: '+14256730745',
+    publicContactHours: 'Daily, 9:30 AM–7:00 PM',
+    openingHours: { opens: '09:30', closes: '19:00' },
+    callsAnswered24Hours: true,
+    caregivingCoverage24Hours: true,
+    tourPolicy: 'Daily, by appointment',
+    licensedCapacity: 6,
+    founded: 2007,
+    payment: confirmedPayment,
     mapsUrl: 'https://maps.google.com/?q=3111+201st+Pl+SW,+Lynnwood,+WA+98036',
     license: '750676',
+    dshsServicesUrl: 'https://fortress.wa.gov/dshs/adsaapps/lookup/AFHServices.aspx?ref=pub&Lic=750676',
+    dshsReportsUrl: 'https://fortress.wa.gov/dshs/adsaapps/lookup/AFHForms.aspx?ref=pub&Lic=750676',
   },
   everett: {
+    name: 'Aging with Grace AFH',
     street: '2825 132nd St SE',
     cityState: 'Everett, WA 98208',
     oneLine: '2825 132nd St SE, Everett, WA 98208',
+    phone: '(425) 357-8630',
+    phoneTel: '+14253578630',
+    fax: '(425) 225-5721',
+    faxTel: '+14252255721',
+    publicContactHours: 'Daily, 10:00 AM–7:00 PM',
+    openingHours: { opens: '10:00', closes: '19:00' },
+    callsAnswered24Hours: true,
+    caregivingCoverage24Hours: true,
+    tourPolicy: 'Daily, by appointment only',
+    licensedCapacity: 5,
+    founded: 2017,
+    payment: confirmedPayment,
     mapsUrl: 'https://maps.google.com/?q=2825+132nd+St+SE,+Everett,+WA+98208',
     license: '753460',
+    dshsServicesUrl: 'https://fortress.wa.gov/dshs/adsaapps/lookup/AFHServices.aspx?ref=pub&Lic=753460',
+    dshsReportsUrl: 'https://fortress.wa.gov/dshs/adsaapps/lookup/AFHForms.aspx?ref=pub&Lic=753460',
   },
 } as const
 
@@ -26,35 +75,29 @@ export const site = {
  * Who actually provides the care. None of the competing local sites name a credential, and it
  * is the thing families are really deciding on, so it is worth stating plainly.
  *
- * The registered nurse is available as needed rather than employed, so no RN headcount is
- * recorded here and nothing on the site says "on staff".
+ * The registered nurse is a delegating nurse and consultant rather than a confirmed employee,
+ * so no RN headcount is recorded here and nothing on the site says "on staff" or "on call".
  */
 export const team = {
   ownerName: 'Gabriela Badet',
   ownerYears: 21,
-  ownerCredential: 'Registered Nursing Assistant (NAR)',
+  ownerExperience: 'senior care and adult family home ownership',
+  ownerCredential: 'Nursing Assistant Registered (NAR)',
+  rnRelationship: 'delegating nurse and consultant for both homes',
   /** Credentials the caregiving staff hold, per the owners. No headcounts: those change. */
   staffCredentials: ['NARs', 'CNAs', 'home care aides'],
 } as const
 
 /**
- * Current openings, shown as a banner under the nav when set.
- *
- * None of the competing adult family home sites publish this, and it is the first thing a
- * family with an urgent need looks for, so it is worth keeping accurate. Set to null when both
- * homes are full: an out-of-date "room available" costs more trust than saying nothing.
- */
-export const availability: { text: string; home?: 'lynnwood' | 'everett' } | null = null
-
-/**
- * Google Business Profile URLs, one per home. Fill these in after each profile is created and
- * verified: they become `sameAs` in the structured data, which is how Google ties this site to
- * the profile. An empty string is omitted rather than published as a dead link.
+ * Public Google Business Profile URLs, one per home. These become `sameAs` in the structured
+ * data, tying each location page to its corresponding Google local entity.
  * See docs/google-business-profile.md.
  */
 export const googleBusinessProfile = {
-  lynnwood: '',
-  everett: '',
+  lynnwood:
+    'https://www.google.com/maps/search/?api=1&query=A%26D+Home+Care%2C+3111+201st+Pl+SW%2C+Lynnwood%2C+WA+98036&query_place_id=ChIJaxJvgigFkFQRKmnvYcpcDls',
+  everett:
+    'https://www.google.com/maps/search/?api=1&query=Aging+with+Grace+AFH%2C+2825+132nd+St+SE%2C+Everett%2C+WA+98208&query_place_id=ChIJd1Trjb8HkFQRccCFBlr-GLg',
 }
 
 /**

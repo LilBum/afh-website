@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "verify:seo": "node scripts/verify-built-seo.mjs"
   },
   "dependencies": {
     "@fontsource-variable/fraunces": "^5.2.5",

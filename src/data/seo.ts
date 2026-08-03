@@ -5,7 +5,7 @@
 // a static HTML file per route. The static copy is what matters for search: crawlers and
 // link unfurlers see the right title, description, canonical and JSON-LD without running JS.
 
-import { areasServed, geo, googleBusinessProfile, site, team } from './contact'
+import { areasServed, businessIdentity, geo, googleBusinessProfile, site, team } from './contact'
 import { faqs } from './site'
 
 /**
@@ -14,7 +14,7 @@ import { faqs } from './site'
  */
 export const SITE_URL = 'https://kingsgateafh.org'
 
-const BRAND = 'A&D Home Care & Aging with Grace AFH'
+export const BRAND = businessIdentity.publicName
 
 const ORG_ID = `${SITE_URL}/#organization`
 const LYNNWOOD_ID = `${SITE_URL}/lynnwood#home`
@@ -22,42 +22,28 @@ const EVERETT_ID = `${SITE_URL}/everett#home`
 
 /** Care needs families actually search for. Mirrors `servicesFull` in site.ts. */
 const CARE_SERVICES = [
-  'Dementia care',
-  'Alzheimer’s care',
-  'Memory care',
-  'Mental health care',
-  '24-hour care',
-  'Medication management',
-  'Diabetes care',
-  'Stroke (CVA) care',
-  'Wound care',
-  'Oxygen therapy',
-  'Tube feeding',
-  'Foley catheter care',
+  'Dementia and memory support',
+  'Mental health support',
+  '24-hour personal care and supervision',
+  'Medication reminders and assistance',
+  'Medication administration support based on assessment and caregiver scope',
+  'Diabetes and insulin support based on assessment and any required nurse delegation',
   'Incontinence care',
-  'Bowel and bladder retraining',
-  'Cancer care',
-  'Congestive heart failure care',
-  'Hospice care',
+  'Nurse-delegated support based on assessment and care plan',
+  'Higher-acuity support based on assessment, care plan, scope of practice, and outside-provider coordination',
+  'Hospice support and outside-provider coordination',
   'Mobility and transfer assistance',
   'Bathing, grooming and dressing',
   'Home-cooked meals',
+  'Exercise and recreational music activities',
 ]
+
+const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
 const AREA_SERVED = areasServed.map((name) => ({
   '@type': name === 'Snohomish County' ? 'AdministrativeArea' : 'City',
   name: `${name}, WA`,
 }))
-
-/** Licensed 24-hour residential care, so the door is never closed. */
-const OPEN_ALWAYS = [
-  {
-    '@type': 'OpeningHoursSpecification',
-    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-    opens: '00:00',
-    closes: '23:59',
-  },
-]
 
 /** Drops empty/null keys, so an unconfirmed fact is omitted rather than published blank. */
 function compact<T extends Record<string, unknown>>(obj: T): T {
@@ -90,42 +76,55 @@ function offerCatalog(name: string) {
   }
 }
 
-// The parent corporation, which is why the site lives on kingsgateafh.org. Both homes hang off
-// this as `parentOrganization`. Swap `name` for the exact registered legal name when confirmed.
+function publicHours(opens: string, closes: string) {
+  return {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: DAYS,
+    opens,
+    closes,
+  }
+}
+
+const HOME_FOUNDER_ID = `${SITE_URL}/#gabriela-badet`
+
+const homeFounder = {
+  '@type': 'Person',
+  '@id': HOME_FOUNDER_ID,
+  name: team.ownerName,
+}
+
+// Public website publisher and legal parent, confirmed by the owner on 2026-08-02.
 const organization = {
   '@type': 'Organization',
   '@id': ORG_ID,
-  name: 'Kingsgate',
-  alternateName: BRAND,
+  name: businessIdentity.publicName,
+  legalName: businessIdentity.legalName,
   url: SITE_URL,
   logo: `${SITE_URL}/assets/favicon.svg`,
   telephone: site.phoneTel,
   email: site.email,
+  subOrganization: [{ '@id': LYNNWOOD_ID }, { '@id': EVERETT_ID }],
   areaServed: AREA_SERVED,
-  founder: {
-    '@type': 'Person',
-    name: team.ownerName,
-    jobTitle: 'Owner',
-    hasCredential: {
-      '@type': 'EducationalOccupationalCredential',
-      credentialCategory: team.ownerCredential,
-    },
-  },
   description:
     'Two licensed adult family homes providing 24-hour senior care in Lynnwood and Everett, Washington.',
 }
 
-// `geo` and `sameAs` stay absent until the values are confirmed; see data/contact.ts.
+// Location facts and public profile URLs come from the centralized contact data.
 const lynnwoodHome = compact({
   '@type': 'LocalBusiness',
   '@id': LYNNWOOD_ID,
   name: 'A&D Home Care',
-  alternateName: 'A&D Home Care Adult Family Home',
   description:
-    'Licensed adult family home in Lynnwood, Washington, with dementia and mental health care, private rooms, family-style dining and 24-hour professional care.',
+    'Licensed adult family home in Lynnwood, Washington, with DSHS-listed Dementia and Mental Health specialty designations, private rooms and 24-hour personal care.',
   url: `${SITE_URL}/lynnwood`,
-  telephone: site.phoneTel,
+  telephone: site.lynnwood.phoneTel,
   email: site.email,
+  parentOrganization: { '@id': ORG_ID },
+  founder: { '@id': HOME_FOUNDER_ID },
+  openingHoursSpecification: publicHours(
+    site.lynnwood.openingHours.opens,
+    site.lynnwood.openingHours.closes,
+  ),
   image: [
     `${SITE_URL}/assets/img/lynnwood-exterior.webp`,
     `${SITE_URL}/assets/img/living-room.webp`,
@@ -144,8 +143,6 @@ const lynnwoodHome = compact({
   identifier: licenseId(site.lynnwood.license),
   hasMap: site.lynnwood.mapsUrl,
   areaServed: AREA_SERVED,
-  openingHoursSpecification: OPEN_ALWAYS,
-  parentOrganization: { '@id': ORG_ID },
   hasOfferCatalog: offerCatalog('Care and services at A&D Home Care'),
 })
 
@@ -153,12 +150,18 @@ const everettHome = compact({
   '@type': 'LocalBusiness',
   '@id': EVERETT_ID,
   name: 'Aging with Grace AFH',
-  alternateName: 'Aging with Grace Adult Family Home',
   description:
-    'Licensed adult family home in Everett, Washington, with dementia and mental health care, private rooms, roll-in showers and 24-hour professional care.',
+    'Licensed adult family home in Everett, Washington, with DSHS-listed Dementia and Mental Health specialty designations, private rooms and 24-hour personal care.',
   url: `${SITE_URL}/everett`,
-  telephone: site.phoneTel,
+  telephone: site.everett.phoneTel,
+  faxNumber: site.everett.faxTel,
   email: site.email,
+  parentOrganization: { '@id': ORG_ID },
+  founder: { '@id': HOME_FOUNDER_ID },
+  openingHoursSpecification: publicHours(
+    site.everett.openingHours.opens,
+    site.everett.openingHours.closes,
+  ),
   image: [
     `${SITE_URL}/assets/img/everett-exterior.webp`,
     `${SITE_URL}/assets/img/everett-bedroom.webp`,
@@ -177,8 +180,6 @@ const everettHome = compact({
   identifier: licenseId(site.everett.license),
   hasMap: site.everett.mapsUrl,
   areaServed: AREA_SERVED,
-  openingHoursSpecification: OPEN_ALWAYS,
-  parentOrganization: { '@id': ORG_ID },
   hasOfferCatalog: offerCatalog('Care and services at Aging with Grace AFH'),
 })
 
@@ -214,6 +215,10 @@ export type RouteSeo = {
   description: string
   /** Social preview image, 1200x630. */
   image: string
+  imageAlt: string
+  imageWidth: string
+  imageHeight: string
+  imageType: 'image/jpeg'
   jsonLd: Record<string, unknown>
 }
 
@@ -221,9 +226,14 @@ export const routeSeo: RouteSeo[] = [
   {
     path: '/',
     file: 'index.html',
-    title: 'Adult Family Homes in Lynnwood & Everett, WA | Dementia & Senior Care',
-    description: `Licensed adult family homes in Lynnwood and Everett, WA. Dementia, memory and mental health care, 24-hour care, RN available as needed, private rooms. Serving Snohomish County. Call ${site.phone}.`,
+    title: 'Kingsgate AFH, Inc | Adult Family Homes in Lynnwood & Everett',
+    description:
+      'Two licensed adult family homes in Lynnwood and Everett, WA, with DSHS-listed dementia and mental health specialties, private rooms and tours by appointment.',
     image: `${SITE_URL}/assets/og/og-home.jpg`,
+    imageAlt: 'A&D Home Care in Lynnwood and Aging with Grace AFH in Everett, Washington',
+    imageWidth: '1200',
+    imageHeight: '630',
+    imageType: 'image/jpeg',
     jsonLd: {
       '@context': 'https://schema.org',
       '@graph': [
@@ -236,6 +246,7 @@ export const routeSeo: RouteSeo[] = [
           inLanguage: 'en-US',
         },
         organization,
+        homeFounder,
         lynnwoodHome,
         everettHome,
         faqPage,
@@ -245,23 +256,33 @@ export const routeSeo: RouteSeo[] = [
   {
     path: '/lynnwood',
     file: 'lynnwood.html',
-    title: 'Adult Family Home in Lynnwood, WA | Dementia & Memory Care',
-    description: `A&D Home Care is a licensed adult family home in Lynnwood, WA. Dementia, memory and mental health care, private rooms, 24-hour care, RN as needed, step-free showers. Call ${site.phone}.`,
+    title: 'A&D Home Care | Adult Family Home in Lynnwood, WA',
+    description:
+      'A&D Home Care is a licensed Lynnwood adult family home offering 24-hour care, dementia support, nurse-delegated services, hospice coordination and private rooms.',
     image: `${SITE_URL}/assets/og/og-lynnwood.jpg`,
+    imageAlt: 'Exterior of A&D Home Care adult family home in Lynnwood, Washington',
+    imageWidth: '1200',
+    imageHeight: '630',
+    imageType: 'image/jpeg',
     jsonLd: {
       '@context': 'https://schema.org',
-      '@graph': [lynnwoodHome, breadcrumb('Lynnwood Home', '/lynnwood')],
+      '@graph': [organization, homeFounder, lynnwoodHome, breadcrumb('Lynnwood Home', '/lynnwood')],
     },
   },
   {
     path: '/everett',
     file: 'everett.html',
-    title: 'Adult Family Home in Everett, WA | Dementia & Memory Care',
-    description: `Aging with Grace AFH is a licensed adult family home at ${site.everett.oneLine}. Dementia, memory and mental health care, private rooms, 24-hour care, roll-in showers. Call ${site.phone}.`,
+    title: 'Aging with Grace AFH | Adult Family Home in Everett, WA',
+    description:
+      'Aging with Grace AFH is a licensed Everett adult family home offering 24-hour care, dementia support, nurse-delegated services, hospice coordination and private rooms.',
     image: `${SITE_URL}/assets/og/og-everett.jpg`,
+    imageAlt: 'Exterior of Aging with Grace AFH adult family home in Everett, Washington',
+    imageWidth: '1200',
+    imageHeight: '630',
+    imageType: 'image/jpeg',
     jsonLd: {
       '@context': 'https://schema.org',
-      '@graph': [everettHome, breadcrumb('Everett Home', '/everett')],
+      '@graph': [organization, homeFounder, everettHome, breadcrumb('Everett Home', '/everett')],
     },
   },
 ]

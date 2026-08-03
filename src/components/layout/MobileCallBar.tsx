@@ -13,7 +13,7 @@ export default function MobileCallBar() {
     <div className="fixed inset-x-0 bottom-0 z-[70] flex gap-2 border-t border-line bg-cream/95 px-3 py-2 backdrop-blur-md md:hidden">
       <a
         href={`tel:${site.phoneTel}`}
-        className="flex flex-1 items-center justify-center gap-[0.5rem] rounded-pill bg-coral px-4 py-[0.7rem] text-[1.02rem] font-extrabold text-white no-underline shadow-card"
+        className="flex flex-1 items-center justify-center gap-[0.5rem] rounded-pill bg-coral px-4 py-[0.7rem] text-[1.02rem] font-extrabold text-ink no-underline shadow-card"
       >
         <Phone size={18} aria-hidden />
         Call {site.phone}

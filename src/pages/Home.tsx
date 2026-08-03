@@ -9,12 +9,18 @@ import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
 import IconBadge from '../components/ui/IconBadge'
 import ContactCard from '../components/ui/ContactCard'
+import ResponsiveImage from '../components/ui/ResponsiveImage'
 import Caregivers from '../components/sections/Caregivers'
 import Faq from '../components/sections/Faq'
 import Reveal from '../components/ui/Reveal'
+import { businessIdentity } from '../data/contact'
 import { servicesOverview, site, trustStrip, values } from '../data/site'
+import { useHomeAvailability } from '../components/availability/AvailabilityProvider'
 
 export default function Home() {
+  const lynnwoodAvailability = useHomeAvailability('lynnwood')
+  const everettAvailability = useHomeAvailability('everett')
+
   return (
     <>
       <Seo route="/" />
@@ -24,7 +30,7 @@ export default function Home() {
         <Container>
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.05fr_0.9fr] lg:gap-16">
             <div>
-              <Kicker>Adult family homes in Lynnwood &amp; Everett, WA</Kicker>
+              <Kicker>{businessIdentity.publicName} · Lynnwood &amp; Everett, WA</Kicker>
               <h1 className="mb-[1.2rem]">Adult family homes where care feels like family</h1>
               <p className="mb-8 max-w-[34rem] text-[1.25rem] text-ink-soft">
                 Two warm, family-style homes with 24-hour professional care and room to truly live:{' '}
@@ -35,12 +41,12 @@ export default function Home() {
                   <Phone size={18} aria-hidden />
                   Call {site.phone}
                 </Button>
-                <Button to="/lynnwood" variant="ghost">
-                  See the Lynnwood home
+                <Button href="#homes" variant="ghost">
+                  Compare our two homes
                 </Button>
               </div>
               <p className="mt-[1.1rem] text-[0.95rem] font-bold text-ink-soft">
-                Family-style living · RN available as needed · Private rooms
+                Family-style living · RN delegation &amp; consultation · Private rooms
               </p>
             </div>
 
@@ -49,9 +55,11 @@ export default function Home() {
                 aria-hidden
                 className="absolute -top-3.5 -right-3.5 bottom-3.5 left-3.5 -rotate-[2.5deg] rounded-card bg-teal-tint"
               />
-              <img
+              <ResponsiveImage
                 src="/assets/img/living-room.webp"
                 alt="The bright living room of our Lynnwood home, with vaulted ceilings, a chandelier, fireplace, and comfortable couches"
+                fetchPriority="high"
+                sizes="(min-width: 1160px) 488px, (min-width: 1024px) calc(46vw - 48px), (min-width: 600px) 560px, calc(100vw - 40px)"
                 width={893}
                 height={1200}
                 className="relative max-h-[540px] w-full rounded-card object-cover shadow-float"
@@ -82,16 +90,17 @@ export default function Home() {
       {/* ---------- Our two homes ---------- */}
       <Section id="homes" alt>
         <Container>
-          <SectionHead center kicker="Our two homes" title="Two homes, one standard of care">
+          <SectionHead center kicker="Our two homes" title="Two homes, shared values">
             Both homes are family-style houses in quiet neighborhoods, not facilities. Choose the one closest to you.
           </SectionHead>
           <div className="grid grid-cols-1 gap-[1.6rem] sm:grid-cols-2">
             <Reveal className="h-full">
               <article className="flex h-full flex-col overflow-hidden rounded-card border border-line bg-white shadow-soft transition-[transform,box-shadow] duration-200 hover:-translate-y-1 hover:shadow-card">
                 <div className="relative aspect-[16/9]">
-                  <img
+                  <ResponsiveImage
                     src="/assets/img/lynnwood-exterior.webp"
                     alt="The Lynnwood home behind cherry trees in blossom, with a fountain in the front lawn and a ramp to the front door"
+                    sizes="(min-width: 1160px) 547px, (min-width: 640px) calc((100vw - 66px) / 2), calc(100vw - 40px)"
                     loading="lazy"
                     className="h-full w-full object-cover"
                   />
@@ -109,6 +118,9 @@ export default function Home() {
                     A bright, spacious home on a quiet residential street, with a vaulted-ceiling living room, open
                     kitchen, family-style dining, and a sunny back deck.
                   </p>
+                  <p className="mt-3 font-extrabold text-teal-deep" role="status" aria-live="polite">
+                    Current status: {lynnwoodAvailability.headline}
+                  </p>
                   <div className="mt-[1.3rem] self-start">
                     <Button to="/lynnwood" variant="primary">
                       See the Lynnwood home
@@ -121,9 +133,10 @@ export default function Home() {
             <Reveal className="h-full">
               <article className="flex h-full flex-col overflow-hidden rounded-card border border-line bg-white shadow-soft transition-[transform,box-shadow] duration-200 hover:-translate-y-1 hover:shadow-card">
                 <div className="relative aspect-[16/9]">
-                  <img
+                  <ResponsiveImage
                     src="/assets/img/everett-exterior.webp"
                     alt="The Everett home on a sunny day, with a terraced garden and a balcony above the entry"
+                    sizes="(min-width: 1160px) 547px, (min-width: 640px) calc((100vw - 66px) / 2), calc(100vw - 40px)"
                     loading="lazy"
                     className="h-full w-full object-cover"
                   />
@@ -138,8 +151,11 @@ export default function Home() {
                     {site.everett.oneLine}
                   </p>
                   <p className="flex-1 text-[1.02rem] text-ink-soft">
-                    Our Everett home offers the same warm, family-style care, with landscaped gardens, a sunny back
-                    deck, and a table always set for family-style meals.
+                    A warm, family-style home with landscaped gardens, a sunny back deck, and a table always set for
+                    shared meals.
+                  </p>
+                  <p className="mt-3 font-extrabold text-teal-deep" role="status" aria-live="polite">
+                    Current status: {everettAvailability.headline}
                   </p>
                   <div className="mt-[1.3rem] self-start">
                     <Button to="/everett" variant="primary">
@@ -168,9 +184,9 @@ export default function Home() {
                 from medication reminders, or require supervision throughout the day and night.
               </p>
               <p className="mt-4">
-                Both of our homes are licensed to provide{' '}
-                <strong>dementia, Alzheimer's, and mental health care</strong>. As a resident's needs change over time,
-                they can often continue living in the same familiar home with the caregivers they know and trust.
+                Both are Washington-licensed adult family homes. Their public DSHS records list specialty designations
+                in <strong>dementia and mental health</strong>. Whether a home can safely support someone is assessed
+                individually as their needs change.
               </p>
               <p className="mt-4">
                 For seniors who need around-the-clock support or specialized care to ensure their safety and well-being,
@@ -180,9 +196,10 @@ export default function Home() {
             </Reveal>
             <Reveal>
               <figure>
-                <img
+                <ResponsiveImage
                   src="/assets/img/dining-room.webp"
                   alt="The dining room of our Lynnwood home with a large table, bay window, and natural light"
+                  sizes="(min-width: 1160px) 528px, (min-width: 1024px) calc(50vw - 52px), calc(100vw - 40px)"
                   width={554}
                   height={1200}
                   loading="lazy"
@@ -223,9 +240,9 @@ export default function Home() {
       {/* ---------- Services overview ---------- */}
       <Section id="services" alt>
         <Container>
-          <SectionHead center kicker="Care & services" title="Everything your loved one needs, under one roof">
-            From daily personal care to specialized nursing support, the same full set of services at both of our
-            homes.
+          <SectionHead center kicker="Care & services" title="Care shaped around the person">
+            From help with daily routines to individualized care support, talk with us about what each home can safely
+            provide for your family member.
           </SectionHead>
           <div className="grid grid-cols-1 gap-[1.3rem] sm:grid-cols-2 lg:grid-cols-4">
             {servicesOverview.map((card, i) => (
@@ -243,11 +260,14 @@ export default function Home() {
                       </li>
                     ))}
                   </ul>
-                  <span className="mt-4 text-[0.98rem] font-extrabold text-teal-deep">
+                  <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-[0.98rem] font-extrabold text-teal-deep">
                     <Link to="/lynnwood#services" className="text-teal-deep no-underline hover:underline">
-                      Full list →
+                      Lynnwood care →
                     </Link>
-                  </span>
+                    <Link to="/everett#services" className="text-teal-deep no-underline hover:underline">
+                      Everett care →
+                    </Link>
+                  </div>
                 </Card>
               </Reveal>
             ))}
@@ -267,9 +287,15 @@ export default function Home() {
           <div className="grid grid-cols-1 gap-[1.3rem] lg:grid-cols-3">
             <Reveal className="h-full">
               <ContactCard icon={Phone} title="Call us">
-                Phone: <a href={`tel:${site.phoneTel}`}>{site.phone}</a>
+                <strong>A&amp;D Home Care:</strong>{' '}
+                <a href={`tel:${site.lynnwood.phoneTel}`}>{site.lynnwood.phone}</a>
                 <br />
-                Call or text any time. We're happy to answer questions.
+                <strong>Aging with Grace AFH:</strong>{' '}
+                <a href={`tel:${site.everett.phoneTel}`}>{site.everett.phone}</a>
+                <br />
+                <strong>Shared owner contact:</strong> <a href={`tel:${site.phoneTel}`}>{site.phone}</a>
+                <br />
+                Prospective-family calls are answered 24/7.
               </ContactCard>
             </Reveal>
             <Reveal className="h-full">

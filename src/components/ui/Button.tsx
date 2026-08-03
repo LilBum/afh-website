@@ -26,7 +26,7 @@ const sizes: Record<NonNullable<BaseProps['size']>, string> = {
 
 const variants: Record<Variant, string> = {
   primary: 'border-transparent bg-teal text-white shadow-[0_6px_18px_rgba(14,124,107,0.35)] hover:bg-teal-deep',
-  coral: 'border-transparent bg-coral text-white shadow-[0_6px_18px_rgba(224,120,86,0.35)] hover:bg-coral-hover',
+  coral: 'border-transparent bg-coral text-ink shadow-[0_6px_18px_rgba(224,120,86,0.35)] hover:bg-[#e88969]',
   ghost: 'border-teal bg-white text-teal-deep hover:bg-teal-tint',
 }
 

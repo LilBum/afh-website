@@ -1,10 +1,19 @@
 import type { ReactNode } from 'react'
-import { site } from '../../data/site'
 import Container from '../ui/Container'
 import Reveal from '../ui/Reveal'
 
 /** Teal gradient call-to-action band shared by the Lynnwood & Everett pages. */
-export default function CtaBand({ heading, children }: { heading: string; children: ReactNode }) {
+export default function CtaBand({
+  heading,
+  children,
+  phone,
+  phoneTel,
+}: {
+  heading: string
+  children: ReactNode
+  phone: string
+  phoneTel: string
+}) {
   return (
     <section id="tour" className="pb-[3.8rem] sm:pb-[5.5rem]">
       <Container>
@@ -16,10 +25,10 @@ export default function CtaBand({ heading, children }: { heading: string; childr
             </div>
             <div className="flex flex-col items-start gap-[0.9rem] lg:items-end">
               <a
-                href={`tel:${site.phoneTel}`}
+                href={`tel:${phoneTel}`}
                 className="whitespace-nowrap font-head text-[clamp(1.5rem,3vw,2.1rem)] font-semibold text-white no-underline hover:underline"
               >
-                {site.phone}
+                {phone}
               </a>
               <span className="text-[0.95rem] font-bold text-[#bfe0d9]">Tours daily, by appointment</span>
             </div>
