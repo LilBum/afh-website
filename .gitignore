@@ -8,3 +8,9 @@ Thumbs.db
 desktop.ini
 
 .vercel
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+.dev.vars
